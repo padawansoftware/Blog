@@ -1,0 +1,100 @@
+version: '3.4'
+services:
+    php:
+        container_name: blog-${SERVER_ENV}-php-fpm
+        build: ./services/php-fpm
+        volumes:
+            - ${APP_DIR}:/var/www/
+            - media:/var/www/admin/symfony/public/media
+            - ./shared:/docker-shared
+        environment:
+            - SERVER_ENV
+        tty: true
+    node:
+        container_name: blog-${SERVER_ENV}-node
+        build: ./services/node
+        volumes:
+            - ${APP_DIR}:/var/www/
+            - ./shared:/docker-shared
+        environment:
+            - SERVER_ENV
+        tty: true
+    proxy:
+        container_name: blog-${SERVER_ENV}-proxy
+        build: ./services/proxy
+        volumes:
+            - ./services/proxy/etc/nginx/sites-available:/etc/nginx/sites-available
+            - ./services/proxy/etc/nginx/sites-available:/etc/nginx/sites-enabled
+        depends_on:
+            - php
+            - frontend
+            - admin
+            - api
+            - media
+        environment:
+            VIRTUAL_HOST: ${VIRTUAL_HOST}
+        networks:
+            - default
+            - proxy
+        tty: true
+    frontend:
+        container_name: blog-${SERVER_ENV}-frontend
+        build: ./services/frontend
+        volumes:
+            - ${APP_DIR}:/var/www/
+            - ./services/frontend/etc/nginx/sites-available:/etc/nginx/sites-available
+            - ./services/frontend/etc/nginx/sites-available:/etc/nginx/sites-enabled
+            - ./shared:/docker-shared
+        working_dir: /var/www/frontend
+        depends_on:
+            - node
+    admin:
+        container_name: blog-${SERVER_ENV}-admin
+        build: ./services/admin
+        volumes:
+            - ${APP_DIR}:/var/www/
+            - media:/var/www/admin/symfony/public/media
+            - ./services/admin/etc/nginx/sites-available:/etc/nginx/sites-available
+            - ./services/admin/etc/nginx/sites-available:/etc/nginx/sites-enabled
+            - ./shared:/docker-shared
+        tty: true
+        working_dir: /var/www/admin
+        depends_on:
+            - php
+    api:
+        container_name: blog-${SERVER_ENV}-api
+        build: ./services/api
+        volumes:
+            - ${APP_DIR}:/var/www/
+            - ./services/api/etc/nginx/sites-available:/etc/nginx/sites-available
+            - ./services/api/etc/nginx/sites-available:/etc/nginx/sites-enabled
+            - ./shared:/docker-shared
+        tty: true
+        working_dir: /var/www/api
+        depends_on:
+            - php
+    dbserver:
+        container_name: blog-${SERVER_ENV}-dbserver
+        image: mariadb
+        env_file:
+            - .dbserver.env
+        volumes:
+            - dbserver:/var/lib/mysql
+    media:
+        container_name: blog-${SERVER_ENV}-media
+        build: ./services/media
+        depends_on:
+            - php
+        volumes:
+            - media:/var/www
+            - ./services/media/etc/nginx/sites-available:/etc/nginx/sites-available
+            - ./services/media/etc/nginx/sites-available:/etc/nginx/sites-enabled
+            - ./shared:/docker-shared
+volumes:
+    dbserver:
+    media:
+
+networks:
+    proxy:
+        external:
+            name: nginx-proxy

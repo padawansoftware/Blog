@@ -1,0 +1,51 @@
+<template>
+    <div class="post-container">
+        <div
+            v-for="post in posts"
+            :key="post.id"
+        >
+            <post :post="post"></post>
+        </div>
+
+        <router-link id="more" :to="{name:'posts-index'}">ver más</router-link>
+    </div>
+</template>
+
+<script>
+    import Post from '@components/Index/Post.vue';
+
+    const POST_LIMIT = 5;
+
+    export default {
+        name: 'home',
+        data() {
+            return {
+                posts: []
+            }
+        },
+        mounted() {
+            this.$api.get('post').summary(POST_LIMIT).then(response => {
+                this.posts = response.data;
+            });
+        },
+        components: {
+            Post
+        }
+    }
+</script>
+
+<style scoped>
+    #more {
+        display: block;
+
+        padding: 5px 10px;
+        margin-bottom: 20px;
+
+        text-align: center;
+        border: 1px solid;
+
+        color: var(--yellow);
+        font-family: "Star Wars";
+        font-weight: bolder;
+    }
+</style>

@@ -1,0 +1,41 @@
+:root {
+    --yellow: #e5b13a;
+}
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 1.4em;
+    font-size: 21px;
+    color: #eee;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    color: var(--yellow);
+    text-decoration: none;
+    outline: none;
+}
+
+@font-face {
+    font-family: "Star Wars";
+    src: url("assets/fonts/Starjedi.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Star Wars Logo";
+    src: url("assets/fonts/Starjhol.ttf") format("truetype");
+}
+
+h1 {
+    color: var(--yellow);
+    font-family: "Star Wars";
+    line-height: 40px;
+}
+
+.post-container {
+    width: 70vw;
+    margin: auto;
+}

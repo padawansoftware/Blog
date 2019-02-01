@@ -1,0 +1,95 @@
+version: '3.4'
+services:
+    php:
+        container_name: php-fpm
+        build: ./services/php-fpm
+        volumes:
+            - ../app:/var/www/
+            - media:/var/www/admin/symfony/public/media
+            - ./shared:/docker-shared
+        environment:
+            - SERVER_ENV
+        tty: true
+    node:
+        container_name: node
+        build: ./services/node
+        volumes:
+            - ../app:/var/www
+            - ./shared:/docker-shared
+        command: /root/bin/watch.sh
+        tty: true
+    proxy:
+        container_name: proxy
+        build: ./services/proxy
+        ports:
+            - "${PROXY_HTTP_PORT}:80"
+            - "${PROXY_HTTPS_PORT}:443"
+        volumes:
+            - ./services/proxy/etc/nginx/sites-available:/etc/nginx/sites-available
+            - ./services/proxy/etc/nginx/sites-available:/etc/nginx/sites-enabled
+        depends_on:
+            - php
+            - frontend
+            - admin
+            - api
+            - media
+        tty: true
+    frontend:
+        container_name: frontend
+        build: ./services/frontend
+        volumes:
+            - ../app:/var/www
+            - ./services/frontend/etc/nginx/sites-available:/etc/nginx/sites-available
+            - ./services/frontend/etc/nginx/sites-available:/etc/nginx/sites-enabled
+            - ./shared:/docker-shared
+        working_dir: /var/www/frontend
+        depends_on:
+            - node
+    admin:
+        container_name: admin
+        build: ./services/admin
+        volumes:
+            - ../app:/var/www
+            - media:/var/www/admin/symfony/public/media
+            - ./services/admin/etc/nginx/sites-available:/etc/nginx/sites-available
+            - ./services/admin/etc/nginx/sites-available:/etc/nginx/sites-enabled
+            - ./shared:/docker-shared
+        tty: true
+        working_dir: /var/www/admin
+        depends_on:
+            - php
+    api:
+        container_name: api
+        build: ./services/api
+        volumes:
+            - ../app:/var/www
+            - ./services/api/etc/nginx/sites-available:/etc/nginx/sites-available
+            - ./services/api/etc/nginx/sites-available:/etc/nginx/sites-enabled
+            - ./shared:/docker-shared
+        tty: true
+        working_dir: /var/www/api
+        depends_on:
+            - php
+    dbserver:
+        container_name: dbserver
+        image: mariadb
+        volumes:
+            - dbserver:/var/lib/mysql
+        ports:
+            - "${DB_PORT}:3306"
+        environment:
+            - MYSQL_ROOT_PASSWORD
+            - MYSQL_DATABASE
+            - MYSQL_USER
+            - MYSQL_PASSWORD
+    media:
+        container_name: media
+        build: ./services/media
+        volumes:
+            - media:/var/www
+            - ./services/media/etc/nginx/sites-available:/etc/nginx/sites-available
+            - ./services/media/etc/nginx/sites-available:/etc/nginx/sites-enabled
+            - ./shared:/docker-shared
+volumes:
+    dbserver:
+    media:

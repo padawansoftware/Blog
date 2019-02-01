@@ -1,0 +1,26 @@
+<nav id="menu-bar">
+    <!-- Menu content -->
+    <ul id="menu-bar-content">
+        <li>
+            <a href="{{ path('posts_index') }}">
+                <i class="fa fa-file"></i>
+                <span>{{ 'post.plural'|trans }}</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('collections_index') }}">
+                <i class="fa fa-book"></i>
+                <span>{{ 'collection.plural'|trans }}</span>
+            </a>
+        </li>
+    </ul>
+
+    <ul id="menu-bar-bottom">
+        <li>
+            <a href="{{ path('logout') }}">
+                <i class="fa fa-sign-out"></i>
+                <span>{{ 'lateral_menu.logout'|trans }}</span>
+            </a>
+        </li>
+    </ul>
+</nav>

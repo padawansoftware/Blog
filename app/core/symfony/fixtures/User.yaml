@@ -1,0 +1,5 @@
+Core\Entity\User:
+  padawan:
+    username: Padawan
+    roles: []
+    password: "\\$2y\\$13\\$bjYSRDslqbSpBJ8ANmj\/k.6UeABhTdYJDN9WCmEb8UnnE6kvry5ei"

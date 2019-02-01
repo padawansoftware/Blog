@@ -1,0 +1,10 @@
+{%- block vich_image_widget -%}
+    <div class="image-upload">
+        {{- form_widget(form.file) -}}
+        {%- if image_uri -%}
+            <img src="{{ image_uri }}">
+        {% else %}
+            <img src="{{ asset('assets/images/select-image.png') }}">
+        {% endif %}
+    </div>
+{%- endblock -%}

@@ -1,0 +1,63 @@
+# Lateral menu translations
+lateral_menu:
+    logout: Logout
+
+# Post specific translations
+post:
+    singular: Post
+    plural: Posts
+    add_new: Add new post
+    edit: Edit post
+    form:
+        add_chapter: Add chapter
+        remove_chapter: Remove chapter
+    fields:
+        title: Title
+        image: Image
+        collections: Collections
+        chapters: Chapters
+        enabled: Enabled
+
+chapter:
+    fields:
+        title: Title
+        content: Content
+        enabled: Enabled
+
+# Collection specific translations
+collection:
+    singular: Collection
+    plural: Collections
+    add_new: Add new collection
+    edit: Edit collection
+    fields:
+        name: Name
+        image: Image
+
+# Status
+status:
+    enabled: Enabled
+    disabled: Disabled
+
+# Actions
+actions:
+    edit: Edit
+    delete: Delete
+
+# Alerts displayed
+alert:
+    no_elements: No elements have been created
+
+# List table fields
+table:
+    name: Name
+    title: Title
+    status: Status
+    actions: Actions
+    elements: Elements
+
+# Generic form
+form:
+    save: Save
+    save_exit: Save & Exit
+    exit: Exit

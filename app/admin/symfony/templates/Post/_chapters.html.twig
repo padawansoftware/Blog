@@ -1,0 +1,29 @@
+<div id="chapter_selector">
+    {% for index, chapter in chapters %}
+        <button type="button" class="ps chapter {% if index == 0 %}active{% endif %}" data-chapter="{{ index }}">{{ index }}</button>&nbsp;
+    {% endfor %}
+    <div class="placeholder"></div>
+    <button class="ps" id="blog-add-chapter">{{ 'post.form.add_chapter'|trans }}</button>
+    &nbsp;
+    <button class="ps" id="blog-remove-chapter">{{ 'post.form.remove_chapter'|trans }}</button>
+</div>
+
+<div id="chapters">
+    {% for index, chapter in chapters %}
+    <div class="chapter {% if index == 0 %}active{% endif %}" data-chapter="{{ index }}">
+        <div class="group">
+            {{ form_label(chapter.title) }}
+            {{ form_widget(chapter.title) }}
+        </div>
+        <div class="group">
+            {{ form_label(chapter.content) }}
+            {{ form_widget(chapter.content) }}
+        </div>
+        <div class="group">
+            {{ form_widget(chapter.enabled) }}
+            {{ form_label(chapter.enabled) }}
+        </div>
+    </div>
+    {% endfor %}
+    <div class="placeholder"></div>
+</div>

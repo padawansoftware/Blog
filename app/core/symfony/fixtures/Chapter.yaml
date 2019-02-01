@@ -1,0 +1,13 @@
+Core\Entity\Chapter:
+  symfony-intro-chapter-1:
+    id: 1
+    title: Capítulo 1
+    content: Este es el primer capítulo de introducción a symfony
+    post: '@Introduccion'
+    enabled: true
+  symfony-intro-chapter-2:
+    id: 2
+    title: Capítulo 2
+    content: Este es el segundo capítulo de introducción a symfony
+    post: '@Introduccion'
+    enabled: true

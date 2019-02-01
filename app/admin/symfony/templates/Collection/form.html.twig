@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{%  config_page {
+        'title' : (form_action == 'create' ? 'collection.add_new'|trans : 'collection.edit'|trans),
+        'breadcrumbs' : {
+            ('collection.plural'|trans) : path('collections_index')
+        }
+    }
+%}
+
+{% block content %}
+
+<div class="panel col-md-12">
+    {{ form_start(form) }}
+        <div class="group">
+            {{ form_row(form.name) }}
+        </div>
+        <div class="group">
+            {{ form_label(form.slug) }}
+            <div class="inline-group">
+                <button id="slug-button" type="button" class="ps" title="Generate slug from title">Slug</button>
+                {{ form_widget(form.slug) }}
+            </div>
+        </div>
+        <div class="group">
+            {{ form_row(form.image) }}
+        </div>
+        <div class="section">
+             {{ form_widget(form.save) }}
+             {{ form_widget(form['save&exit']) }}
+             <a href="{{ path('collections_index') }}"><button type="button" class="ps bg-red">{{ 'form.exit'|trans }}</button></a>
+        </div>
+    {{ form_end(form)}}
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('build/Collection/form.js') }}"></script>
+{% endblock %}

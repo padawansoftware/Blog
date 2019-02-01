@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Padawan Software | Blog{% endblock %}</title>
+
+         <!-- Our theme -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('build/app.css') }}">
+
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+    {% block body %}
+        <section class="body">
+            <!-- Left lateral menu -->
+            {{ include ('Partial/lateral_menu.html.twig') }}
+
+            <!-- Page -->
+            <div id="page">
+                {% if has_header() %}
+                {{ include ('Partial/content_header.html.twig')}}
+                {% endif %}
+
+                <!-- Page content-->
+                <div id="content">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </section>
+        <!-- Load main js -->
+        <script src="{{ asset('build/app.js') }}"></script>
+
+        <!-- Display flash messages -->
+        <script type="text/javascript">
+            {% for message in app.flashes('success') %}
+                toastr.success("{{ message }}");
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+                toastr.error("{{ message }}");
+            {% endfor %}
+        </script>
+
+        {% block javascripts %}{% endblock %}
+
+    {% endblock body %}
+    </body>
+</html>

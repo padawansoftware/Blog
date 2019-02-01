@@ -1,0 +1,7 @@
+Core\Entity\Post:
+  Introduccion:
+    id: 1
+    title: Introducción a Symfony
+    createdAt: <(new DateTime())>
+    enabled: true
+    slug: introduccion-a-symfony

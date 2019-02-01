@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{%  config_page {
+        'title' : 'collection.plural'|trans,
+        'breadcrumbs': {
+            ('collection.plural'|trans): false
+        }
+    }
+%}
+
+{% block content %}
+<div class="panel col-md-12">
+    <div class="tright mbottom-10">
+        <a href="{{ path('collections_create') }}"><button class="ps">{{ 'collection.add_new'|trans }} </button></a>
+    </div>
+
+    {% if collections | length > 0 %}
+        <table class="ps">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>{{ 'table.name'|trans }}</th>
+                    <th> {{ 'table.elements'|trans }}</th>
+                    <th>{{ 'table.actions'|trans}} </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for collection in collections %}
+                <tr>
+                    <td>{{ collection.id }}</td>
+                    <td>{{ collection.name }}</td>
+                    <td>
+                        <a href="{{ path('collections_posts', { collection: collection.id }) }}"><button class="ps">{{ 'post.plural'|trans ~ ' (' ~ collection.posts|length ~ ')'}}</button></a>
+                    </td>
+                    <td>
+                        <a href="{{ path('collections_edit', { collection: collection.id }) }}"><button class="ps bg-blue">{{ 'actions.edit'|trans }}</button></a>
+                        <a href="{{ path('collections_delete', { collection: collection.id }) }}" class="js-delete-element"><button class="ps bg-red">{{ 'actions.delete'|trans }}</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert info">
+            {{ 'alert.no_elements'|trans }}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

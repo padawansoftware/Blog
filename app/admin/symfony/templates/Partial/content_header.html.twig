@@ -1,0 +1,14 @@
+<!-- Content dependant header-->
+<div id="content-header">
+    <div class="col-lg-10">
+        <h2>{{ get_title() }}</h2>
+        <ol>
+            {# No home by this moment
+            <li><a href="{{ path('home') }}"><i class="fa fa-home"></i></a></li>
+            #}
+            {% for name, link in get_breadcrumbs() %}
+                <li {% if not loop.first %}class="breadcrumb-child"{% endif %}><a {% if link %}href="{{ link }}"{% endif %}>{{ name }}</a></li>
+            {% endfor %}
+        </ol>
+    </div>
+</div>

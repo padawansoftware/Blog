@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('build/Post/form.css') }}">
+{% endblock %}
+
+{%  config_page {
+        'title' : (form_action == 'create' ? 'post.add_new'|trans : 'post.edit'|trans),
+        'breadcrumbs': {
+            'Posts': path('posts_index')
+        }
+    }
+%}
+
+{% block content %}
+    <div class="panel col-md-12">
+        {{ form_start(form) }}
+            <div class="section">
+                <div class="post" data-post="{{ post.id }}">
+                    <h2>{{ 'post.singular'|trans }}</h2>
+                    <div class="group">
+                        {{ form_label(form.title) }}
+                        {{ form_widget(form.title) }}
+                    </div>
+                    <div class="group">
+                        {{ form_label(form.slug) }}
+                        <div class="inline-group">
+                            <button id="slug-button" type="button" class="ps" title="Generate slug from title">Slug</button>
+                            {{ form_widget(form.slug) }}
+                        </div>
+                    </div>
+                    <div class="group">
+                        {{ form_row(form.image) }}
+                    </div>
+                    <div class="group">
+                        {{ form_label(form.collections) }}
+                        {{ form_widget(form.collections) }}
+                    </div>
+                    <div class="group">
+                        {{ form_widget(form.enabled) }}
+                        {{ form_label(form.enabled) }}
+                    </div>
+                </div>
+            </div>
+            {% if form_action == 'edit' %}
+            <div class="section">
+                <h2>{{ 'post.fields.chapters'|trans }}</h2>
+                {% include 'Post/_chapters.html.twig' with {chapters: form.chapters } %}
+            </div>
+            {% endif %}
+
+            <div class="section">
+                {{ form_widget(form.save) }}
+                {{ form_widget(form['save&exit']) }}
+                <a href="{{ path('posts_index') }}"><button type="button" class="ps bg-red">{{ 'form.exit'|trans }}</button></a>
+            </div>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('build/Post/form.js') }}"></script>
+{% endblock %}

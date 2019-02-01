@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('build/login.css') }}">
+{% endblock %}
+
+
+{% block body %}
+    <form id="form-login" action="{{ path('login') }}" method="post">
+        <span> Welcome to PS Blog!</span>
+
+        <div class="group">
+            <input type="text" id="username" name="_username" placeholder="Username" value="{{ last_username }}"/>
+        </div>
+        <div class="group">
+            <input type="password" id="password" placeholder="Password" name="_password"/>
+        </div>
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+        <button class="ps" type="submit">Login</button>
+    </form>
+{% endblock %}

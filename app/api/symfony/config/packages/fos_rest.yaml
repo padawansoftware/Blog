@@ -1,0 +1,8 @@
+# Read the documentation: https://symfony.com/doc/master/bundles/FOSRestBundle/index.html
+fos_rest:
+    view:
+        view_response_listener: 'force'
+    routing_loader:
+        include_format: false
+        default_format: json
+

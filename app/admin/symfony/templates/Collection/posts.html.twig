@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{%  config_page {
+        'title' : 'post.plural'|trans,
+        'breadcrumbs': {
+            ('collection.plural'|trans): path('collections_index'),
+            (collection.name) : false
+        }
+    }
+%}
+
+{% block content %}
+<div class="panel col-md-12">
+    {% if collection.posts | length > 0 %}
+    <table class="ps">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>{{ 'table.title'|trans }}</th>
+                <th>{{ 'table.status'|trans }}</th>
+                <th>{{ 'table.actions'|trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in collection.posts %}
+            <tr class="post" data-post="{{ post.id }}">
+                <td>{{ post.id }}</td>
+                <td>{{ post.title }}</td>
+                <td>
+                    {% if post.enabled %}
+                    <button type="button" class="ps enabled js-toggle-element-status" data-href="{{ path('_posts_toggle_status') }}">{{ 'status.enabled'|trans }}</button>
+                    {% else %}
+                    <button type="button" class="ps disabled js-toggle-element-status" data-href="{{ path('_posts_toggle_status') }}">{{ 'status.disabled'|trans }}</button>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ path('posts_edit', {post: post.id }) }}"><button class="ps bg-blue">{{ 'actions.edit'|trans }}</button></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <div class="alert info">
+            {{ 'alert.no_elements'|trans }}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

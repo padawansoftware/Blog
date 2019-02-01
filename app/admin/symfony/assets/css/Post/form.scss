@@ -1,0 +1,33 @@
+#chapter_selector {
+    display: flex;
+    margin-bottom: 20px;
+
+    button.chapter {
+        height: 25px;
+        padding: 5px 10px;
+        margin-right: 10px;
+
+        background: var(--green);
+        color:white;
+        font-weight: bold;
+        text-decoration: none;
+        text-align: center;
+        font-size: 18px;
+        line-height: 15px;
+        border-radius: 3px;
+
+        &.active {
+            background-color: black !important;
+        }
+    }
+}
+
+#chapters {
+    .chapter {
+        display: none;
+
+        &.active {
+            display: block;
+        }
+    }
+}

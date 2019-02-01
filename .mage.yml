@@ -1,0 +1,122 @@
+magephp:
+    log_dir: .mage/logs
+    environments:
+        local:
+            pre-deploy:
+                - fs/link: { from: 'configs/local.docker-compose.yml', to: 'docker/docker-compose.yml' }
+                - fs/link: { from: 'configs/local.env', to: 'docker/.env' }
+                - exec:
+                    desc: 'Build docker images'
+                    cmd: 'cd docker; docker-compose build'
+                    timeout: 600
+                - exec:
+                    desc: 'Build php dependencies'
+                    cmd: 'cd docker; docker-compose run --rm php /root/bin/build.sh'
+                    timeout: 600
+                - exec:
+                    desc: 'Build node dependencies'
+                    cmd: 'cd docker; docker-compose run --rm node /root/bin/build.sh'
+                    timeout: 600
+            post-deploy:
+                - exec:
+                    desc: 'Recreate / Turn up new docker'
+                    cmd: 'cd docker; docker-compose up -d --force-recreate'
+        development:
+            user: deployer
+            branch: development
+            from: app docker
+            host_path: /var/sites/blog/development
+            releases: 2
+            exclude:
+                - '*symfony/var/*'
+            hosts:
+                - localhost
+            pre-deploy:
+                - git/update
+                - fs/link: { from: 'configs/environment.docker-compose.yml', to: 'docker/docker-compose.yml' }
+                - fs/link: { from: 'configs/development.env', to: 'docker/.env' }
+                - exec:
+                    desc: 'Copy local configuration files'
+                    cmd: 'rsync --recursive /var/sites/blog/development/shared/ .'
+                - exec:
+                    desc: 'Build docker images'
+                    cmd: 'cd docker; docker-compose build'
+                    timeout: 600
+                - exec:
+                    desc: 'Build php dependencies'
+                    cmd: 'cd docker; docker-compose run --rm php /root/bin/build.sh'
+                    timeout: 600
+                - exec:
+                    desc: 'Build node dependencies'
+                    cmd: 'cd docker; docker-compose run --rm node /root/bin/build.sh'
+                    timeout: 600
+            on-release:
+                - exec:
+                    desc: 'Recreate / Turn up new docker'
+                    cmd: 'cd docker; docker-compose up -d --force-recreate'
+        preproduction:
+            user: deployer
+            branch: preproduction
+            from: app docker
+            host_path: /var/sites/blog/preproduction
+            releases: 2
+            exclude:
+                - '*symfony/var/*'
+            hosts:
+                - localhost
+            pre-deploy:
+                - git/update
+                - fs/link: { from: 'configs/environment.docker-compose.yml', to: 'docker/docker-compose.yml' }
+                - fs/link: { from: 'configs/preproduction.env', to: 'docker/.env' }
+                - exec:
+                    desc: 'Copy local configuration files'
+                    cmd: 'rsync --recursive /var/sites/blog/preproduction/shared/ .'
+                - exec:
+                    desc: 'Build docker images'
+                    cmd: 'cd docker; docker-compose build'
+                    timeout: 600
+                - exec:
+                    desc: 'Build php dependencies'
+                    cmd: 'cd docker; docker-compose run --rm php /root/bin/build.sh'
+                    timeout: 600
+                - exec:
+                    desc: 'Build node dependencies'
+                    cmd: 'cd docker; docker-compose run --rm node /root/bin/build.sh'
+                    timeout: 600
+            on-release:
+                - exec:
+                    desc: 'Recreate / Turn up new docker'
+                    cmd: 'cd docker; docker-compose up -d --force-recreate'
+        production:
+            user: deployer
+            branch: master
+            from: app docker
+            host_path: /var/sites/blog/production
+            releases: 4
+            exclude:
+                - '*symfony/var/*'
+            hosts:
+                - localhost
+            pre-deploy:
+                - git/update
+                - fs/link: { from: 'configs/environment.docker-compose.yml', to: 'docker/docker-compose.yml' }
+                - fs/link: { from: 'configs/production.env', to: 'docker/.env' }
+                - exec:
+                    desc: 'Copy local configuration files'
+                    cmd: 'rsync --recursive /var/sites/blog/production/shared/ .'
+                - exec:
+                    desc: 'Build docker images'
+                    cmd: 'cd docker; docker-compose build'
+                    timeout: 600
+                - exec:
+                    desc: 'Build php dependencies'
+                    cmd: 'cd docker; docker-compose run --rm php /root/bin/build.sh'
+                    timeout: 600
+                - exec:
+                    desc: 'Build node dependencies'
+                    cmd: 'cd docker; docker-compose run --rm node /root/bin/build.sh'
+                    timeout: 600
+            on-release:
+                - exec:
+                    desc: 'Recreate / Turn up new docker'
+                    cmd: 'cd docker; docker-compose up -d --force-recreate'

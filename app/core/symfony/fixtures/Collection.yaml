@@ -1,0 +1,4 @@
+Core\Entity\Collection:
+    symfony:
+      id: 1
+      name: Symfony

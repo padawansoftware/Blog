@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 id="title"> Todas las collecciones </h1>
+        <h1 id="title"> Todas las colecciones </h1>
         <collection-container
             :collections="collections"
         ></collection-container>

@@ -96,8 +96,12 @@
 
             color: white;
 
-            .chapter:not(:last-child) {
-                margin-bottom: 40px;
+            .chapter {
+                width: 100%;
+
+                &:not(:last-child) {
+                    margin-bottom: 40px;
+                }
             }
         }
     }

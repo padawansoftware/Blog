@@ -23,14 +23,15 @@
 
 <script>
     // Import prism theme
-    var Prism = require('prismjs/prism.js');
+    const Prism = require('prismjs/prism.js');
     require('prismjs/themes/prism-tomorrow.css');
     require('prismjs/plugins/line-highlight/prism-line-highlight.js');
     require('prismjs/plugins/line-highlight/prism-line-highlight.css');
     require('prismjs/components/prism-markup-templating.min.js');
     require('prismjs/components/prism-php.js');
-    require('spoiler.js');
-    require('spoiler.js/spoiler.css');
+
+    const Spoiler = require('@padawansoftware/spoiler.js');
+    require('@padawansoftware/spoiler.js/src/spoiler.css');
 
     function slugify(string) {
         const a = 'àáäâãåăæąçćčđďèéěėëêęğǵḧìíïîįłḿǹńňñòóöôœøṕŕřßşśšșťțùúüûǘůűūųẃẍÿýźžż·/_,:;'
@@ -95,8 +96,12 @@
 
             color: white;
 
-            .chapter:not(:last-child) {
-                margin-bottom: 40px;
+            .chapter {
+                width: 100%;
+
+                &:not(:last-child) {
+                    margin-bottom: 40px;
+                }
             }
         }
     }

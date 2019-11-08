@@ -3,7 +3,7 @@
     "build": "encore production --progress",
     "dev": "encore dev",
     "dev-server": "encore dev-server",
-    "watch": "encore dev --watch",
+    "watch": "encore dev --watch"
   },
   "dependencies": {
     "@padawansoftware/spoiler.js": "<1.0",
@@ -16,7 +16,7 @@
     "prismjs": "^1.17.1",
     "sweetalert2": "^8.15.0",
     "toastr": "^2.1.4",
-    "trumbowyg": "^2.18.0",
+    "trumbowyg": "^2.18.0"
   },
   "devDependencies": {
     "@symfony/webpack-encore": "^0.22.4",

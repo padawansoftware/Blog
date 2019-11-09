@@ -44,15 +44,15 @@ abstract class BaseEntityService
     public function persist($entity)
     {
         $this->em->persist($entity);
-        $this->em->flush($entity);
+        $this->em->flush();
     }
 
     /**
      * Update an entity in DB
      */
-    public function update($entity = null)
+    public function update()
     {
-        $this->em->flush($entity);
+        $this->em->flush();
     }
 
     /**

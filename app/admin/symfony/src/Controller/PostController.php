@@ -103,7 +103,7 @@ class PostController extends Controller
         $post = $postService->find($request->get('post', false));
         if ($post instanceof Post) {
             $post->toggleStatus();
-            $postService->update($post);
+            $postService->update();
         }
 
         return new Response();

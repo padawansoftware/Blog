@@ -41,15 +41,19 @@ class PostController extends Controller
         $form = $this->createForm(PostType::class, $post);
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $postService->persist($post);
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $postService->persist($post);
 
-            $this->addFlash('success', 'Post created successfully');
+                $this->addFlash('success', 'Post created successfully');
 
-            if ($form->get('save&exit')->isClicked()) {
-                return $this->redirectToRoute('posts_index');
+                if ($form->get('save&exit')->isClicked()) {
+                    return $this->redirectToRoute('posts_index');
+                } else {
+                    return $this->redirectToRoute('posts_edit', ['post' => $post->getId()]);
+                }
             } else {
-                return $this->redirectToRoute('posts_edit', ['post' => $post->getId()]);
+                $this->addFlash('error', 'Error in fields validation');
             }
         }
 

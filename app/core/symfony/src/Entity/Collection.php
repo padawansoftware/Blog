@@ -44,6 +44,7 @@ class Collection
     /**
      * @var Asset
      *
+     * @Assert\NotNull
      * Assert image and 23/9 aspect ratio
      * @ImageAssetConstraint(
      *  minRatio = 2.55,

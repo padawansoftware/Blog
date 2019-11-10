@@ -37,15 +37,19 @@ class CollectionController extends Controller
         $form = $this->createForm(CollectionType::class, $collection);
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $collectionService->persist($collection);
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $collectionService->persist($collection);
 
-            $this->addFlash('success', 'Collection created successfully');
+                $this->addFlash('success', 'Collection created successfully');
 
-            if ($form->get('save&exit')->isClicked()) {
-                return $this->redirectToRoute('collections_index');
+                if ($form->get('save&exit')->isClicked()) {
+                    return $this->redirectToRoute('collections_index');
+                } else {
+                    return $this->redirectToRoute('collections_edit', ['collection' => $collection->getId()]);
+                }
             } else {
-                return $this->redirectToRoute('collections_edit', ['collection' => $collection->getId()]);
+                $this->addFlash('error', 'Error in fields validation');
             }
         }
 
@@ -63,13 +67,17 @@ class CollectionController extends Controller
         $form = $this->createForm(CollectionType::class, $collection);
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $collectionService->update();
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $collectionService->update();
 
-            $this->addFlash('success', 'Collection edited successfully');
+                $this->addFlash('success', 'Collection edited successfully');
 
-            if ($form->get('save&exit')->isClicked()) {
-                return $this->redirectToRoute('collections_index');
+                if ($form->get('save&exit')->isClicked()) {
+                    return $this->redirectToRoute('collections_index');
+                }
+            } else {
+                $this->addFlash('error', 'Error in fields validation');
             }
         }
 

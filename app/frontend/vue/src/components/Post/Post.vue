@@ -125,5 +125,9 @@
                 white-space: inherit;
             }
         }
+
+        hr {
+            display: none;
+        }
     }
 </style>

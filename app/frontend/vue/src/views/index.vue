@@ -16,6 +16,12 @@
 
     const POST_LIMIT = 5;
 
+
+    function limitChapterContent(chapter) {
+        chapter.content = chapter.content.split('<hr')[0];
+    }
+
+
     export default {
         name: 'home',
         data() {
@@ -25,7 +31,12 @@
         },
         mounted() {
             this.$api.get('post').summary(POST_LIMIT).then(response => {
-                this.posts = response.data;
+                var posts = response.data;
+                for(var post of posts) {
+                    limitChapterContent(post.chapters[0]);
+                }
+
+                this.posts = posts;
             });
         },
         components: {

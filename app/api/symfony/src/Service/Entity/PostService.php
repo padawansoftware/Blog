@@ -33,7 +33,7 @@ class PostService extends BaseEntityService
     public function getEnabled()
     {
         return $this->repository->getEnabled(
-            $this->request->get('order', ["createdAt" => "DESC"]),
+            $this->request->get('order', ["order" => "ASC"]),
             $this->request->get('limit', null)
         );
     }

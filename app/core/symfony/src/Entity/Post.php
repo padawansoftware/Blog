@@ -66,6 +66,13 @@ class Post implements EnabledInterface
     protected $slug;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="post_order", type="integer")
+     */
+    protected $order;
+
+    /**
      * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Collection", mappedBy="posts")
@@ -318,5 +325,25 @@ class Post implements EnabledInterface
     public function getImageUrl()
     {
         return $this->image->getUrl();
+    }
+
+    /**
+     * @return int
+     */
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    /**
+     * @param int $order
+     *
+     * @return self
+     */
+    public function setOrder($order)
+    {
+        $this->order = $order;
+
+        return $this;
     }
 }

@@ -1,1 +1,0 @@
-{"base_url":"","routes":{"_posts_upload_chapter_image":{"tokens":[["text","\/_upload_chapter_image"],["variable","\/","[^\/]++","post",true],["text","\/posts"]],"defaults":[],"requirements":[],"hosttokens":[],"methods":[],"schemes":[]}},"prefix":"","host":"localhost","port":"","scheme":"http","locale":[]}

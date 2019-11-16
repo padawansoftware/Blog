@@ -54,7 +54,7 @@
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR% --symlink --relative": "symfony-cmd",
-            "fos:js-routing:dump --format=json --target=%PUBLIC_DIR%/build/fos_js_routes.json": "symfony-cmd"
+            "fos:js-routing:dump --format=json --target=%PUBLIC_DIR%/build/fosjsrouting/fos_js_routes.json": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"

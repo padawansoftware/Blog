@@ -19,7 +19,7 @@ abstract class BaseEntityService
         $this->class = $this->getEntityClass();
 
         $this->doctrine = $doctrine;
-        $this->em = $doctrine->getEntityManager();
+        $this->em = $doctrine->getManager();
         $this->repository = $doctrine->getRepository($this->class);
     }
 

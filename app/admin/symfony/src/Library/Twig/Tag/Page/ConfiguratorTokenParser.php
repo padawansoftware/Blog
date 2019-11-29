@@ -1,18 +1,18 @@
 <?php
 namespace Admin\Library\Twig\Tag\Page;
 
-use \Twig_Token;
-use \Twig_TokenParser;
+use Twig\Token;
+use Twig\TokenParser\AbstractTokenParser;
 
-class ConfiguratorTokenParser extends Twig_TokenParser
+class ConfiguratorTokenParser extends AbstractTokenParser
 {
-    public function parse(Twig_Token $token)
+    public function parse(Token $token)
     {
         $parser = $this->parser;
         $stream = $parser->getStream();
 
         $value = $parser->getExpressionParser()->parseExpression();
-        $stream->expect(Twig_Token::BLOCK_END_TYPE);
+        $stream->expect(Token::BLOCK_END_TYPE);
 
         return new ConfiguratorNode($value, $token->getLine(), $this->getTag());
     }

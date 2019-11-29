@@ -120,6 +120,7 @@
         pre {
             margin: 0px auto;
             white-space: pre-wrap;
+            font-size: 15px;
 
             code {
                 white-space: inherit;

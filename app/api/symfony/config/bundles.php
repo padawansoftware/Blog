@@ -15,4 +15,5 @@ return [
     Hautelook\AliceBundle\HautelookAliceBundle::class => ['dev' => true, 'test' => true],
     Core\CoreBundle::class => ['all' => true],
     Vich\UploaderBundle\VichUploaderBundle::class => ['all' => true],
+    PSUploaderBundle\PSUploaderBundle::class => ['all' => true],
 ];

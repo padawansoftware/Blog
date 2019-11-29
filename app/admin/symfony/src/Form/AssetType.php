@@ -1,41 +1,25 @@
 <?php
 namespace Admin\Form;
 
-use Symfony\Component\Form\AbstractType;
+use PSUploaderBundle\Form\AssetType as BaseAssetType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Vich\UploaderBundle\Form\Type\VichImageType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ImageAssetType extends AbstractType
+class AssetType extends BaseAssetType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('file', VichImageType::class, [
-                'label' => false
-            ]);
+        parent::buildForm($builder, $options);
 
         //Populate the asset with the entity it is associated to
-        $builder->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event) use ($options) {
+        $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) use ($options) {
             $form = $event->getForm();
-
             if ($imageAsset = $form->getNormData()) {
                 if (! empty($options['entity'])) {
                     $imageAsset->setEntity($options['entity']);
                 } elseif ($parentForm = $form->getParent()) {
-                    $entity = $parentForm->getNormData();
-                    $imageAsset->setEntity($entity);
-                }
-            }
-        });
-        $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
-            $form = $event->getForm();
-
-            if ($imageAsset = $form->getNormData()) {
-                if ($parentForm = $form->getParent()) {
                     $entity = $parentForm->getNormData();
                     $imageAsset->setEntity($entity);
                 }

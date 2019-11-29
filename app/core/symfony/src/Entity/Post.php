@@ -2,9 +2,9 @@
 namespace Core\Entity;
 
 use \DateTime;
-use Core\Library\Annotations\Asset as AssetAnnotation;
+use PSUploaderBundle\Library\Annotation\Asset as AssetAnnotation;
 use Core\Library\Interfaces\EnabledInterface;
-use Core\Library\Validation\ImageAsset as ImageAssetConstraint;
+use PSUploaderBundle\Library\Validation\ImageAsset as ImageAssetConstraint;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;

@@ -170,6 +170,9 @@
     "ocramius/proxy-manager": {
         "version": "2.2.2"
     },
+    "padawansoftware/uploader-bundle": {
+        "version": "dev-master"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },

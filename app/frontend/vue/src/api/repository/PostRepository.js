@@ -6,16 +6,13 @@ export default class PostRepository {
     }
 
     /**
-     * Retrieve all posts for listing. Posts are retrieved in the order they were created
+     * Retrieve all posts for listing.
      */
     async list() {
         return await this.api.get(
             '/posts',
             {
-                params: { view: 'list', order: {createdAt: 'ASC'}},
-                paramsSerializer: function(params) {
-                    return qs.stringify(params);
-                }
+                params: { view: 'list' }
             }
          );
     }
@@ -26,7 +23,18 @@ export default class PostRepository {
      * @param number The number of post to retrieve for summary
      */
     async summary(number) {
-        return await this.api.get('/posts/', {params: {view: 'summary', limit: number}})
+        return await this.api.get('/posts/', {
+            params: {
+                view: 'summary',
+                limit: number,
+                order: {
+                    order: 'DESC'
+                }
+            },
+            paramsSerializer: function(params) {
+                return qs.stringify(params);
+            }
+        });
     }
 
     /**
@@ -35,6 +43,10 @@ export default class PostRepository {
      * @param slug The slug that identifies the post
      */
     async detail(slug) {
-        return await this.api.get('/posts/' + slug, {params: {view: 'detail'}})
+        return await this.api.get('/posts/' + slug, {
+            params: {
+                view: 'detail'
+            }
+        });
     }
 }

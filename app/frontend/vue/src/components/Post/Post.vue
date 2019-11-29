@@ -27,6 +27,9 @@
     require('prismjs/themes/prism-tomorrow.css');
     require('prismjs/plugins/line-highlight/prism-line-highlight.js');
     require('prismjs/plugins/line-highlight/prism-line-highlight.css');
+    require('prismjs/plugins/toolbar/prism-toolbar.min.js');
+    require('prismjs/plugins/toolbar/prism-toolbar.css');
+    require('prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js');
     require('prismjs/components/prism-markup-templating.min.js');
     require('prismjs/components/prism-php.js');
 
@@ -120,6 +123,7 @@
         pre {
             margin: 0px auto;
             white-space: pre-wrap;
+            font-size: 15px;
 
             code {
                 white-space: inherit;

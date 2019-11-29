@@ -118,9 +118,18 @@ class PostController extends Controller
     }
 
     /**
+     * @Route("/{post}/sort", name="_posts_sort", options={"expose"=true})
+     */
+    public function sortAction(Request $request, Post $post, PostService $postService)
+    {
+        $postService->sort($post, $request->request->get('order'));
+
+        return new Response();
+    }
+
+    /**
      * @Route("/{post}/_upload_chapter_image", name="_posts_upload_chapter_image", options={"expose"=true})
      */
-
     public function uploadChapterImageAction(Request $request, Post $post, AssetService $assetService, UploaderHelper $uploaderHelper)
     {
         $asset = $assetService->create();

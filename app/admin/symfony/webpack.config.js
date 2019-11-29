@@ -2,9 +2,9 @@ var Encore = require('@symfony/webpack-encore');
 
 Encore
     // Directory where the files are written
-    .setOutputPath('public/build/')
+    .setOutputPath('public/build/webpack')
 
-    .setPublicPath('/build')
+    .setPublicPath('/build/webpack')
 
     // Entry points
     .addEntry('app', './assets/js/app.js')

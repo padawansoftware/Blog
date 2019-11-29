@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="{{ asset('build/Post/form.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('build/webpack/Post/form.css') }}">
 {% endblock %}
 
 {%  config_page {
@@ -60,5 +60,5 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script type="text/javascript" src="{{ asset('build/Post/form.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('build/webpack/Post/form.js') }}"></script>
 {% endblock %}

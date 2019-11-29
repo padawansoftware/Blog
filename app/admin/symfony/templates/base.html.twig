@@ -5,7 +5,7 @@
         <title>{% block title %}Padawan Software | Blog{% endblock %}</title>
 
          <!-- Our theme -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('build/app.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('build/webpack/app.css') }}">
 
         {% block stylesheets %}{% endblock %}
     </head>
@@ -28,7 +28,7 @@
             </div>
         </section>
         <!-- Load main js -->
-        <script src="{{ asset('build/app.js') }}"></script>
+        <script src="{{ asset('build/webpack/app.js') }}"></script>
 
         <!-- Display flash messages -->
         <script type="text/javascript">

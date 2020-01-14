@@ -7,7 +7,7 @@ use Admin\Form\PostType;
 use Admin\Service\Entity\PostService;
 use Admin\Service\Entity\AssetService;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -17,7 +17,7 @@ use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 /**
  * @Route("/posts")
  */
-class PostController extends Controller
+class PostController extends AbstractController
 {
     /**
      * @Route("/", name="posts_index")

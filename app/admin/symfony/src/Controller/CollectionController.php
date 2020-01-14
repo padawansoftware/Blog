@@ -5,7 +5,7 @@ use Admin\Form\CollectionType;
 use Admin\Service\Entity\CollectionService;
 use Admin\Service\Entity\PostService;
 use Core\Entity\Collection;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/collections")
  */
-class CollectionController extends Controller
+class CollectionController extends AbstractController
 {
     /**
      * @Route("/", name="collections_index")

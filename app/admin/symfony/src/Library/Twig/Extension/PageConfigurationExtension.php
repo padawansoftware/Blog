@@ -1,10 +1,11 @@
 <?php
 namespace Admin\Library\Twig\Extension;
 
-use \Twig_Extension;
+use Twig\Extension\AbstractExtension;
 use Admin\Library\Twig\Tag\Page\ConfiguratorTokenParser;
+use Twig\TwigFunction;
 
-class PageConfigurationExtension extends Twig_Extension
+class PageConfigurationExtension extends AbstractExtension
 {
     protected $hasHeader;
     protected $title;
@@ -28,9 +29,9 @@ class PageConfigurationExtension extends Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('get_title', [$this, 'getTitle']),
-            new \Twig_SimpleFunction('get_breadcrumbs', [$this, 'getBreadcrumbs']),
-            new \Twig_SimpleFunction('has_header', [$this, 'hasHeader'])
+            new TwigFunction('get_title', [$this, 'getTitle']),
+            new TwigFunction('get_breadcrumbs', [$this, 'getBreadcrumbs']),
+            new TwigFunction('has_header', [$this, 'hasHeader'])
         ];
     }
 

@@ -293,6 +293,9 @@
     "symfony/intl": {
         "version": "v4.2.3"
     },
+    "symfony/mime": {
+        "version": "v4.3.8"
+    },
     "symfony/options-resolver": {
         "version": "v4.2.3"
     },
@@ -311,11 +314,17 @@
     "symfony/polyfill-intl-icu": {
         "version": "v1.10.0"
     },
+    "symfony/polyfill-intl-idn": {
+        "version": "v1.13.0"
+    },
     "symfony/polyfill-mbstring": {
         "version": "v1.10.0"
     },
     "symfony/polyfill-php72": {
         "version": "v1.10.0"
+    },
+    "symfony/polyfill-php73": {
+        "version": "v1.13.0"
     },
     "symfony/property-access": {
         "version": "v4.2.3"

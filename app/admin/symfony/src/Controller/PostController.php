@@ -130,22 +130,26 @@ class PostController extends Controller
     /**
      * @Route("/{post}/_upload_chapter_image", name="_posts_upload_chapter_image", options={"expose"=true})
      */
-    public function uploadChapterImageAction(Request $request, Post $post, AssetService $assetService, UploaderHelper $uploaderHelper)
+    public function uploadDocumentAction(Request $request, Post $post, AssetService $assetService, UploaderHelper $uploaderHelper)
     {
         $asset = $assetService->create();
         $form = $this->createForm(ImageAssetType::class, $asset, ['csrf_protection' => false, 'entity' => $post]);
+        $response = [
+            "success" => false
+        ];
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $assetService->persist($asset);
 
-            return new JsonResponse([
+            $extension = $asset->getExtension();
+            $response = [
                 "success" => true,
-                "link" => $request->getSchemeAndHttpHost() . $uploaderHelper->asset($asset, 'file')]);
+                "format" => $extension,
+                "link" => $request->getSchemeAndHttpHost() . $uploaderHelper->asset($asset, 'file')
+            ];
         }
 
-        return new JsonResponse([
-            "success" => false
-        ]);
+        return new JsonResponse($response);
     }
 }

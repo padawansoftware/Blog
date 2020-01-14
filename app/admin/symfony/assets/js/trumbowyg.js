@@ -58,14 +58,72 @@ var defaultParams = {
         ['unorderedList', 'orderedList'],
         ['horizontalRule'],
         ['removeformat'],
-        ['fullscreen']
+        ['fullscreen'],
+        ['upload']
     ],
     plugins: {
         upload: {
             serverPath: '', // To be defined
             fileFieldName: 'image_asset[file][file]',
-            urlPropertyName: 'link'
+            urlPropertyName: 'link',
+            success: successCallback
         }
+    }
+}
+
+/* Start copy from trumbowyg upload plugin */
+function getDeep(object, propertyParts) {
+    var mainProperty = propertyParts.shift(),
+        otherProperties = propertyParts;
+
+    if (object !== null) {
+        if (otherProperties.length === 0) {
+            return object[mainProperty];
+        }
+
+        if (typeof object === 'object') {
+            return getDeep(object[mainProperty], otherProperties);
+        }
+    }
+    return object;
+}
+
+function insertImage(data, trumbowyg, $modal, values) {
+    if (!!getDeep(data, trumbowyg.o.plugins.upload.statusPropertyName.split('.'))) {
+        var url = getDeep(data, trumbowyg.o.plugins.upload.urlPropertyName.split('.'));
+        trumbowyg.execCmd('insertImage', url, false, true);
+        var $img = $('img[src="' + url + '"]:not([alt])', trumbowyg.$box);
+        $img.attr('alt', values.alt);
+        if (trumbowyg.o.imageWidthModalEdit && parseInt(values.width) > 0) {
+            $img.attr({
+                width: values.width
+            });
+        }
+        setTimeout(function () {
+            trumbowyg.closeModal();
+        }, 250);
+        trumbowyg.$c.trigger('tbwuploadsuccess', [trumbowyg, data, url]);
+    } else {
+        trumbowyg.addErrorOnModalField(
+            $('input[type=file]', $modal),
+            trumbowyg.lang[data.message]
+        );
+        trumbowyg.$c.trigger('tbwuploaderror', [trumbowyg, data]);
+    }
+}
+/* End copy from trumbowyg upload plugin*/
+
+function insertFormatIcon(data, trumbowyg, $modal, values) {
+    trumbowyg.restoreRange();
+    trumbowyg.execCmd('insertHTML', `<a href="${data.link}" target="_blank"><span class="fa fa-file-${data.format}-o"></span></a>`);
+    trumbowyg.closeModal();
+}
+
+function successCallback(data, trumbowyg, $modal, values) {
+    if (['jpg', 'jpeg', 'png', 'svg'].includes(data.format)) {
+        insertImage(data, trumbowyg, $modal, values);
+    } else {
+        insertFormatIcon(data, trumbowyg, $modal, values);
     }
 }
 

@@ -160,4 +160,9 @@ class Asset
 
         return $this;
     }
+
+    public function getExtension()
+    {
+        return $this->file->guessExtension();
+    }
 }

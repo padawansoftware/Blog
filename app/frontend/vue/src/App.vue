@@ -13,6 +13,8 @@
 </template>
 
 <script>
+    require('font-awesome/css/font-awesome.min.css');
+
     export default {
       name: 'app',
     }

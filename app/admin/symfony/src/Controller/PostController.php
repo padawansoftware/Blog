@@ -7,17 +7,17 @@ use Admin\Form\PostType;
 use Admin\Service\Entity\PostService;
 use Admin\Service\Entity\AssetService;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Admin\Form\ImageAssetType;
+use Admin\Form\AssetType;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 /**
  * @Route("/posts")
  */
-class PostController extends Controller
+class PostController extends AbstractController
 {
     /**
      * @Route("/", name="posts_index")
@@ -130,22 +130,26 @@ class PostController extends Controller
     /**
      * @Route("/{post}/_upload_chapter_image", name="_posts_upload_chapter_image", options={"expose"=true})
      */
-    public function uploadChapterImageAction(Request $request, Post $post, AssetService $assetService, UploaderHelper $uploaderHelper)
+    public function uploadDocumentAction(Request $request, Post $post, AssetService $assetService, UploaderHelper $uploaderHelper)
     {
         $asset = $assetService->create();
-        $form = $this->createForm(ImageAssetType::class, $asset, ['csrf_protection' => false, 'entity' => $post]);
+        $form = $this->createForm(AssetType::class, $asset, ['csrf_protection' => false, 'entity' => $post]);
+        $response = [
+            "success" => false
+        ];
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $assetService->persist($asset);
 
-            return new JsonResponse([
+            $extension = $asset->getExtension();
+            $response = [
                 "success" => true,
-                "link" => $request->getSchemeAndHttpHost() . $uploaderHelper->asset($asset, 'file')]);
+                "format" => $extension,
+                "link" => $request->getSchemeAndHttpHost() . $uploaderHelper->asset($asset, 'file')
+            ];
         }
 
-        return new JsonResponse([
-            "success" => false
-        ]);
+        return new JsonResponse($response);
     }
 }

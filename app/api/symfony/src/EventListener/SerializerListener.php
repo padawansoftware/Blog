@@ -30,6 +30,7 @@ class SerializerListener
         }
 
         $request = $this->requestStack->getCurrentRequest();
+
         $context = $view->getContext();
         $context->addGroup($request->get('view', 'Default'));
         $context->addExclusionStrategy(new EnabledExclusionStrategy());

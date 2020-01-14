@@ -64,7 +64,7 @@ var defaultParams = {
     plugins: {
         upload: {
             serverPath: '', // To be defined
-            fileFieldName: 'image_asset[file][file]',
+            fileFieldName: 'asset[file][file]',
             urlPropertyName: 'link',
             success: successCallback
         }

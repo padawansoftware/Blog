@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Admin\Form\ImageAssetType;
+use Admin\Form\AssetType;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 /**
@@ -133,7 +133,7 @@ class PostController extends AbstractController
     public function uploadDocumentAction(Request $request, Post $post, AssetService $assetService, UploaderHelper $uploaderHelper)
     {
         $asset = $assetService->create();
-        $form = $this->createForm(ImageAssetType::class, $asset, ['csrf_protection' => false, 'entity' => $post]);
+        $form = $this->createForm(AssetType::class, $asset, ['csrf_protection' => false, 'entity' => $post]);
         $response = [
             "success" => false
         ];

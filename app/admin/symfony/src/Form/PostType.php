@@ -24,7 +24,7 @@ class PostType extends AbstractType
                     'pattern' => "^[a-z][a-z\-]*[a-z]$"
                 ]
             ])
-            ->add('image', ImageAssetType::class, [
+            ->add('image', AssetType::class, [
                 'label' => 'post.fields.image',
                 'required' => false
             ])

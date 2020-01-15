@@ -98,6 +98,7 @@
             margin-bottom: 20px;
 
             color: white;
+            line-height: 1.7;
 
             .chapter {
                 width: 100%;

@@ -6,7 +6,7 @@
         <slot name="title">
             <h1>{{ post.title }}</h1>
         </slot>
-        <div class="chapters">
+        <div class="chapters line-numbers">
             <div class="chapter"
                 v-for="chapter in post.chapters"
             >
@@ -25,13 +25,15 @@
     // Import prism theme
     const Prism = require('prismjs/prism.js');
     require('prismjs/themes/prism-tomorrow.css');
+    require('prismjs/components/prism-markup-templating.min.js');
+    require('prismjs/components/prism-php.js');
+    require('prismjs/plugins/line-numbers/prism-line-numbers.css');
+    require('prismjs/plugins/line-numbers/prism-line-numbers.min.js');
     require('prismjs/plugins/line-highlight/prism-line-highlight.js');
     require('prismjs/plugins/line-highlight/prism-line-highlight.css');
     require('prismjs/plugins/toolbar/prism-toolbar.min.js');
     require('prismjs/plugins/toolbar/prism-toolbar.css');
     require('prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js');
-    require('prismjs/components/prism-markup-templating.min.js');
-    require('prismjs/components/prism-php.js');
 
     const Spoiler = require('@padawansoftware/spoiler.js');
     require('@padawansoftware/spoiler.js/src/spoiler.css');
@@ -51,14 +53,24 @@
             .replace(/-+$/, '') // Trim - from end of text
     }
 
+    // Throws resize event in window in order to draw lines on spoiler toggle
+    function addResizeEvent() {
+        document.querySelectorAll('.spoiler').forEach(function(node, index, nodeList) {
+            node.addEventListener('click', function() {
+                window.dispatchEvent(new Event('resize'));
+            })
+        });
+    }
+
     export default {
         name: 'post',
         props: [
             'post'
         ],
         updated() {
-            Prism.highlightAll();
             Spoiler.initAll();
+            Prism.highlightAll();
+            addResizeEvent();
         },
         filters: {
             hash: function(string) {
@@ -98,6 +110,7 @@
             margin-bottom: 20px;
 
             color: white;
+            line-height: 1.7;
 
             .chapter {
                 width: 100%;

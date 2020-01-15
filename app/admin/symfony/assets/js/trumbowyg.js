@@ -16,6 +16,8 @@ require('prismjs/themes/prism-tomorrow.css');
 require('prismjs/prism.js');
 require('prismjs/components/prism-markup-templating.min.js');
 require('prismjs/components/prism-php.js');
+require('prismjs/plugins/line-numbers/prism-line-numbers.css');
+require('prismjs/plugins/line-numbers/prism-line-numbers.min.js');
 require('prismjs/plugins/line-highlight/prism-line-highlight.css');
 require('prismjs/plugins/line-highlight/prism-line-highlight.min.js');
 require('trumbowyg/dist/plugins/highlight/ui/trumbowyg.highlight.css');

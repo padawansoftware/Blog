@@ -8,7 +8,7 @@
     <button class="ps" id="blog-remove-chapter">{{ 'post.form.remove_chapter'|trans }}</button>
 </div>
 
-<div id="chapters">
+<div id="chapters" class="line-numbers">
     {% for index, chapter in chapters %}
     <div class="chapter {% if index == 0 %}active{% endif %}" data-chapter="{{ index }}">
         <div class="group">

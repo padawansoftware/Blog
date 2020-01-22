@@ -1,17 +1,21 @@
 'use strict';
 
-//  Load trumbowyg
+//  Trumbowyg
 require('trumbowyg/dist/ui/trumbowyg.min.css');
 require('trumbowyg/dist/trumbowyg.min.js');
 
-//  Load upload plugin
+// Include icons
+var icons = require("trumbowyg/dist/ui/icons.svg");
+$.trumbowyg.svgPath = icons;
+
+// Upload plugin
 require('trumbowyg/dist/plugins/upload/trumbowyg.upload.min.js');
 
-// Load emoji plugin
+// Emoji plugin
 require('trumbowyg/dist/plugins/emoji/ui/trumbowyg.emoji.min.css');
 require('trumbowyg/dist/plugins/emoji/trumbowyg.emoji.js');
 
-//  Load highlight
+// Highlight plugin
 require('prismjs/themes/prism-tomorrow.css');
 require('prismjs/prism.js');
 require('prismjs/components/prism-markup-templating.min.js');
@@ -23,27 +27,32 @@ require('prismjs/plugins/line-highlight/prism-line-highlight.min.js');
 require('trumbowyg/dist/plugins/highlight/ui/trumbowyg.highlight.css');
 require('trumbowyg/dist/plugins/highlight/trumbowyg.highlight.min.js');
 
-// Load spoiler
+// Spoiler plugin
 const Spoiler = require('@padawansoftware/spoiler.js');
 require('@padawansoftware/spoiler.js/src/spoiler.css');
 require('@padawansoftware/trumbowyg-spoiler-plugin');
 require('@padawansoftware/trumbowyg-spoiler-plugin/ui/sass/trumbowyg.spoiler.css');
 
-// Include icons
-var icons = require("trumbowyg/dist/ui/icons.svg");
-$.trumbowyg.svgPath = icons;
+// EasyHTML plugin
+require('@padawansoftware/trumbowyg-easyhtml-plugin');
+require('@padawansoftware/trumbowyg-easyhtml-plugin/ui/sass/trumbowyg.easyhtml.css');
+
+// Color plugin
+require('trumbowyg/dist/plugins/colors/trumbowyg.colors.min.js');
+require('trumbowyg/dist/plugins/colors/ui/trumbowyg.colors.min.css');
 
 // Trumowyg plugin parameters
 var defaultParams = {
     semantic: {
         'div': 'div'
     },
+    defaultLinkTarget: '_blank',
     // Create a new dropdown
     btnsDef: {
         image: {
             dropdown: ['insertImage', 'upload'],
             ico: 'insertImage'
-        }
+        },
     },
     // Redefine the button pane
     btns: [
@@ -51,6 +60,7 @@ var defaultParams = {
         ['formatting'],
         ['strong', 'em', 'del'],
         ['superscript', 'subscript'],
+        ['foreColor', 'backColor'],
         ['link'],
         ['image'], // Our fresh created dropdown
         ['emoji'],
@@ -61,7 +71,8 @@ var defaultParams = {
         ['horizontalRule'],
         ['removeformat'],
         ['fullscreen'],
-        ['upload']
+        ['upload'],
+        ['easyHTML']
     ],
     plugins: {
         upload: {
@@ -69,6 +80,17 @@ var defaultParams = {
             fileFieldName: 'asset[file][file]',
             urlPropertyName: 'link',
             success: successCallback
+        },
+        easyHTML: {
+            templates: {
+                my_anchor: {
+                    text: 'Code tag',
+                    values: {
+                        tag: 'code',
+                        class: 'code-tag',
+                    }
+                },
+            }
         }
     }
 }

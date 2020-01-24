@@ -6,9 +6,9 @@
     "watch": "encore dev --watch"
   },
   "dependencies": {
-    "@padawansoftware/spoiler.js": "<1.0",
-    "@padawansoftware/trumbowyg-easyhtml-plugin": "^0.1.0",
-    "@padawansoftware/trumbowyg-spoiler-plugin": "<1.0",
+    "@padawansoftware/spoiler.js": "*",
+    "@padawansoftware/trumbowyg-easyhtml-plugin": "*",
+    "@padawansoftware/trumbowyg-spoiler-plugin": "*",
     "bootstrap": "^4.3.1",
     "chosen-js": "^1.8.7",
     "font-awesome": "^4.7.0",
@@ -20,5 +20,9 @@
     "toastr": "^2.1.4",
     "trumbowyg": "^2.18.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@symfony/webpack-encore": "^0.22.4",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0"
+  }
 }

@@ -4,19 +4,19 @@
     "watch": "webpack --watch --colors"
   },
   "dependencies": {
-    "@padawansoftware/spoiler.js": "<1.0",
+    "@padawansoftware/spoiler.js": "*",
     "axios": "^0.19.0",
-    "dotenv": "^8.1.0",
-    "dotenv-webpack": "^1.7.0",
     "font-awesome": "^4.7.0",
     "prismjs": "^1.17.1",
     "qs": "^6.8.0",
-    "sass-loader": "^7.1.0",
     "vue": "^2.6.6",
     "vue-router": "^3.0.3"
   },
   "devDependencies": {
     "css-loader": "^2.1.1",
+    "sass-loader": "^7.1.0",
+    "dotenv": "^8.1.0",
+    "dotenv-webpack": "^1.7.0",
     "file-loader": "^3.0.1",
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.12.0",

@@ -154,7 +154,6 @@ button.ps {
     }
 }
 
-
 /* The content page, excluding left menu bar*/
 #page {
     margin-left: 220px;
@@ -256,4 +255,11 @@ button.ps {
             }
         }
     }
+}
+
+.code-tag {
+    background-color: #ddd;
+    border-radius: 3px;
+    font-family: courier, monospace;
+    padding: 0 3px;
 }

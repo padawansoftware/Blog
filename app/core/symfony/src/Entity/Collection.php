@@ -36,7 +36,7 @@ class Collection
      * @var string
      *
      * @ORM\Column(name="post_slug", type="string")
-     * @Assert\Regex(pattern="/^[a-z][a-z\-]*[a-z]$/")
+     * @Assert\Regex(pattern="/^[a-z0-9][a-z0-9\-]*[a-z0-9]$/")
      * @JMS\Groups("list")
      */
     protected $slug;

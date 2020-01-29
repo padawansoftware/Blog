@@ -4,7 +4,9 @@
         :title="title"
         :image="image"
     >
-        <span class="subtitle">{{ elements + " posts" }}</span>
+        <template slot="subtitle">
+            {{ elements + " posts" }}
+        </template>
     </card>
 </template>
 
@@ -21,15 +23,3 @@
         ]
     }
 </script>
-
-<style scoped>
-    .subtitle {
-        display: block;
-
-        margin-top: 5px;
-
-        font-family: Rokkitt, serif;
-        font-size: 14px;
-        color: white;
-    }
-</style>

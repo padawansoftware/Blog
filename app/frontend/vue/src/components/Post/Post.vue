@@ -4,16 +4,19 @@
 <template>
     <div class="post">
         <slot name="title">
-            <h1>{{ post.title }}</h1>
+            <h1 class="title">{{ post.title }}</h1>
         </slot>
         <div class="chapters line-numbers">
+            <!-- Chapter -->
             <div class="chapter"
                 v-for="chapter in post.chapters"
             >
-                <a :href="chapter.title|hash" :id="chapter.title|slugify">
+                <!-- Chapter title-->
+                <a :id="chapter.title|slugify" class="title" :href="chapter.title|hash">
                     <h2 v-if="post.chapters.length > 1">{{ chapter.title }}</h2>
                 </a>
-                <div v-html="chapter.content"></div>
+                <!-- Chapter content -->
+                <div class="content" v-html="chapter.content"></div>
             </div>
         </div>
 
@@ -84,14 +87,6 @@
 </script>
 
 <style scoped>
-    h1 {
-        text-align: center;
-        font-size: 40px;
-        font-family: "Star Wars";
-        text-transform: lowercase;
-        color: var(--yellow);
-    }
-
     .post {
         position: relative;
 
@@ -102,8 +97,17 @@
 
         background: black;
 
+        & > .title {
+            font-size: 40px;
+            font-family: "Star Wars";
+            color: var(--yellow);
+            text-align: center;
+            text-transform: lowercase;
+        }
+
         .chapters {
             display: flex;
+
             justify-content: center;
             flex-direction: column;
             align-items: center;

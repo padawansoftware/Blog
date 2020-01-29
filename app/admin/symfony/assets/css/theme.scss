@@ -11,8 +11,17 @@
     background: var(--green);
     padding: 5px 10px;
     color: white;
+    font-size: 14px;
 
     cursor: pointer;
+
+    &.enabled {
+        background-color: var(--green);
+    }
+
+    &.disabled {
+        background-color: var(--yellow);
+    }
 }
 
 body {
@@ -29,7 +38,6 @@ body {
 
     overflow-x: hidden;
     overflow-y: scroll;
-
 }
 
 form {
@@ -100,16 +108,15 @@ form {
 
 button.ps {
     @include button;
-
-    &.enabled {
-        background-color: var(--green);
-    }
-
-    &.disabled {
-        background-color: var(--yellow);
-    }
 }
 
+a {
+    text-decoration: none;
+
+    &.button {
+        @include button;
+    }
+}
 
 /* Left menu*/
 #menu-bar {
@@ -120,30 +127,29 @@ button.ps {
 
     background: var(--navy-blue);
 
-    #menu-bar-content, #menu-bar-bottom{
+    ul {
         padding-left: 0;
+    }
 
-        li {
-            cursor: pointer;
+    li {
+        cursor: pointer;
 
-            &:hover {
-                background-color: #21262d;
-            }
-
-            a {
-                display: block;
-                padding: 12px 25px;
-
-                color: #cccccc;
-                text-decoration: none;
-
-                i {
-                    margin-right: 0.5em;
-
-                    font-size: 18px;
-                }
-            }
+        &:hover {
+            background-color: #21262d;
         }
+    }
+
+    a {
+        display: block;
+        padding: 12px 25px;
+
+        color: #cccccc;
+    }
+
+    i {
+        margin-right: 0.5em;
+
+        font-size: 18px;
     }
 
     #menu-bar-bottom {
@@ -187,7 +193,6 @@ button.ps {
 
                 a {
                     color: #777;
-                    text-decoration: none;
 
                     i {
                         font-size: 15px;
@@ -214,7 +219,7 @@ button.ps {
                 margin-bottom: 20px;
             }
 
-            table.ps {
+            table {
                 width: 100%;
 
                 border: 1px solid #ebebeb;
@@ -240,6 +245,7 @@ button.ps {
                 }
             }
 
+            /* Display alert message */
             .alert {
                 padding: 12px 20px;
                 border: 1px solid transparent;

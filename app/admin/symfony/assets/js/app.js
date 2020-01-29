@@ -13,7 +13,7 @@ $('.js-delete-element').click(function(event){
     event.preventDefault();
 
     // Extract delete url
-    var deleteUrl = this.href;
+    var deleteUrl = this.href ? this.href : this.dataset.href;
 
     Swal.fire({
         title: 'Are you sure?',

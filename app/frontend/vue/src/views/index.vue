@@ -1,12 +1,14 @@
 <template>
     <div class="post-container">
-        <div
+        <!-- Index posts-->
+        <post
             v-for="post in posts"
             :key="post.id"
+            :post="post"
         >
-            <post :post="post"></post>
-        </div>
+        </post>
 
+        <!-- Display more posts -->
         <router-link id="more" :to="{name:'posts-index'}">ver más</router-link>
     </div>
 </template>
@@ -16,11 +18,9 @@
 
     const POST_LIMIT = 5;
 
-
     function limitChapterContent(chapter) {
         chapter.content = chapter.content.split('<hr')[0];
     }
-
 
     export default {
         name: 'home',

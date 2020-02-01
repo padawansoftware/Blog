@@ -50,7 +50,6 @@
         text-align: center;
         border: 1px solid;
 
-        color: var(--yellow);
         font-family: "Star Wars";
         font-weight: bolder;
     }

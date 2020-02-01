@@ -53,9 +53,9 @@
         margin-bottom: 20px;
 
         text-align: center;
-        border: 1px solid;
+        border: 1px solid var(--primary-color);
 
-        color: var(--yellow);
+        color: var(--primary-color);
         font-family: "Star Wars";
         font-weight: bolder;
     }

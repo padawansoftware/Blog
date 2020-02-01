@@ -84,23 +84,28 @@
 </script>
 
 <style scoped>
-    h1 {
-        text-align: center;
-        font-size: 40px;
-        font-family: "Star Wars";
-        text-transform: lowercase;
-        color: var(--yellow);
-    }
-
     .post {
         position: relative;
 
         margin-bottom: 50px;
-        border: 1px solid var(--yellow);
+        border: 1px solid var(--primary-color);
+
         border-radius: 5px;
         padding: 0 15%;
-
         background: black;
+
+        [data-theme="aliance"] & {
+            background: none;
+            --text-color: black;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 40px;
+            font-family: "Star Wars";
+            text-transform: lowercase;
+            color: var(--primary-color);
+        }
 
         .chapters {
             display: flex;
@@ -109,7 +114,7 @@
             align-items: center;
             margin-bottom: 20px;
 
-            color: white;
+            color: var(--text-color);
             line-height: 1.7;
 
             .chapter {

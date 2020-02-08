@@ -1,51 +1,93 @@
 <template>
-    <div id="app">
+    <div id="app" :data-theme="theme.name">
         <header id="header">
             <router-link :to="{name: 'index'}">
-                <img id="header-logo" src="@/assets/images/logo.png"></img>
+                Padawan Software
             </router-link>
         </header>
         <nav id="menu"></nav>
         <div id="content">
             <router-view></router-view>
         </div>
+
+        <button id="switch-theme" title="Cambiar tema" @click="switchTheme" :style="{
+            backgroundImage: 'url(' + theme.img + ')'}"></button>
     </div>
 </template>
 
 <script>
-    require('font-awesome/css/font-awesome.min.css');
+    const themes = [
+        {
+            name: "star-wars",
+            img: require("@/assets/images/star-wars.png")
+        },
+        {
+            name: "aliance",
+            img: require("@/assets/images/aliance.png")
+        },
+        {
+            name: "empire",
+            img: require("@/assets/images/empire.png")
+        }
+    ];
 
     export default {
       name: 'app',
+      data: function() {
+        return {
+            themeID: 0,
+        };
+      },
+      computed: {
+        theme: function() {
+            return themes[this.themeID % themes.length]
+        }
+      },
+      methods: {
+        switchTheme: function(event) {
+            this.themeID++;
+        }
+      }
     }
 </script>
 
-<style>
-    @import '@/assets/style/theme.scss';
-
-    body {
-        margin: 0;
-
-        background-image: url('assets/images/fondoestrellado.png')
-    }
-
-    header {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-
-        height: 60px;
-        width: 50%;
-        padding: 10px 0;
-
-        img {
-            height: 100%;
-        }
-    }
-
+<style scoped>
     #content {
         margin-top: 60px;
         padding: 10px;
     }
+
+    header {
+        font-family: "Star Wars";
+    }
+
+    #switch-theme {
+        position: fixed;
+        right: 20px;
+        bottom: 10px;
+
+        width: 30px;
+        height: 30px;
+
+        border: none;
+        border-radius: 100%;
+        opacity: 0.5;
+        background: transparent center/cover;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 1;
+        }
+
+        &:focus, &:active {
+            outline: 0;
+            border: none;
+            -moz-outline-style: none;
+        };
+    }
+</style>
+
+<style>
+    @import '~font-awesome/css/font-awesome.min.css';
+    @import '@/assets/style/theme.scss';
 </style>

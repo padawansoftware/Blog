@@ -17,7 +17,7 @@ class CollectionType extends AbstractType
             ])
             ->add('slug', TextType::class, [
                 'attr' => [
-                    'pattern' => "^[a-z][a-z\-]*[a-z]$"
+                    'pattern' => "^[a-z0-9][a-z0-9\-]*[a-z0-9]$"
                 ]
             ])
             ->add('image', AssetType::class, [

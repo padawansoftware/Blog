@@ -28,7 +28,7 @@
         <div class="section">
              {{ form_widget(form.save) }}
              {{ form_widget(form['save&exit']) }}
-             <a href="{{ path('collections_index') }}"><button type="button" class="ps bg-red">{{ 'form.exit'|trans }}</button></a>
+             <a class="button bg-red" href="{{ path('collections_index') }}">{{ 'form.exit'|trans }}</a>
         </div>
     {{ form_end(form)}}
 </div>

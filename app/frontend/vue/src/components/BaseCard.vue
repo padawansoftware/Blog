@@ -1,17 +1,15 @@
 <template>
-    <div class="card">
-        <router-link :to="to">
+        <router-link class="card" :to="to">
             <div
                 class="content"
                 :style="style"
             >
                 <div class="title-cover">
                     <span class="title">{{ title }}</span>
-                    <slot></slot>
+                    <span class="subtitle"><slot name="subtitle"></slot></span>
                 </div>
             </div>
         </router-link>
-    </div>
 </template>
 
 <script>
@@ -55,6 +53,16 @@
 
                 .title {
                     font-size: 18px;
+                }
+
+                .subtitle {
+                    display: block;
+
+                    margin-top: 5px;
+
+                    font-family: Rokkitt, serif;
+                    font-size: 14px;
+                    color: white;
                 }
             }
         }

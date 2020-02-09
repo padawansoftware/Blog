@@ -60,7 +60,7 @@ class Post implements EnabledInterface
      * @var string
      *
      * @ORM\Column(name="post_slug", type="string", length=128)
-     * @Assert\Regex(pattern="/^[a-z][a-z\-]*[a-z]$/")
+     * @Assert\Regex(pattern="/^[a-z0-9][a-z0-9\-]*[a-z0-9]$/")
      * @JMS\Groups({"list", "summary"})
      */
     protected $slug;

@@ -34,7 +34,7 @@
                     {% endif %}
                 </td>
                 <td>
-                    <a href="{{ path('posts_edit', {post: post.id }) }}"><button class="ps bg-blue">{{ 'actions.edit'|trans }}</button></a>
+                    <a class="button bg-blug" href="{{ path('posts_edit', {post: post.id }) }}">{{ 'actions.edit'|trans }}</a>
                 </td>
             </tr>
             {% endfor %}

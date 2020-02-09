@@ -24,3 +24,7 @@
 .bg-yellow {
     background: var(--yellow) !important;
 }
+
+.bg-gray {
+    background: var(--gray) !important;
+}

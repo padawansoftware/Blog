@@ -1,24 +1,3 @@
-:root {
-    --yellow: #e5b13a;
-}
-
-body {
-    font-family: Helvetica, Arial, sans-serif;
-    line-height: 1.4em;
-    font-size: 21px;
-    color: #eee;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-a {
-    color: var(--yellow);
-    text-decoration: none;
-    outline: none;
-}
-
 @font-face {
     font-family: "Star Wars";
     src: url("assets/fonts/Starjedi.ttf") format("truetype");
@@ -29,19 +8,87 @@ a {
     src: url("assets/fonts/Starjhol.ttf") format("truetype");
 }
 
+:root {
+    --yellow: #e5b13a;
+    --blue: #0167a2;
+    --red: #e60c0b;
+}
+
+body {
+    margin: 0;
+}
+
+#app {
+    --primary-color: var(--yellow);
+    --code-tag-color: #777;
+    --text-color: #eee;
+    --link-color: var(--yellow);
+
+    &[data-theme="empire"] {
+        --primary-color: var(--red);
+        --code-tag-color: #444;
+    }
+
+    &[data-theme="aliance"] {
+        --primary-color: var(--blue);
+        --link-color: var(--blue);
+        --code-tag-color: #bbb;
+
+        background-image: initial;
+    }
+
+    position: absolute;
+    left: 0;
+    right: 0;
+
+    min-height: 100vh;
+    margin: 0;
+
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 1.4em;
+    font-size: 21px;
+    color: var(--text-color);
+    background-image: url('assets/images/fondoestrellado.png');
+}
+
+header {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    height: 60px;
+    width: 50%;
+    padding: 10px 0;
+
+    img {
+        height: 100%;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    outline: none;
+}
+
 h1 {
-    color: var(--yellow);
+    color: var(--primary-color);
     font-family: "Star Wars";
     line-height: 40px;
 }
 
 .post-container {
     width: 70vw;
-    margin: auto;
+    margin: 0 auto;
 }
 
 .code-tag {
-    background-color: #777;
+    background-color: var(--code-tag-color);
     border-radius: 3px;
     font-family: courier, monospace;
     padding: 0 3px;

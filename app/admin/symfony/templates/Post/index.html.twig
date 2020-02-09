@@ -15,7 +15,7 @@
 {% block content %}
 <div class="panel col-md-12">
     <div class="tright mbottom-10">
-        <a href="{{ path('posts_create') }}"><button class="ps">{{ 'post.add_new'|trans }}</button></a>
+        <a class="button" href="{{ path('posts_create') }}">{{ 'post.add_new'|trans }}</a>
     </div>
 
     {% if posts | length > 0 %}
@@ -41,8 +41,8 @@
                     {% endif %}
                 </td>
                 <td>
-                    <a href="{{ path('posts_edit', {post: post.id} )}}"><button class="ps bg-blue">{{ 'actions.edit'|trans }}</button></a>
-                    <a href="{{ path('posts_delete', { post: post.id }) }}" class="js-delete-element"><button class="ps bg-red">{{ 'actions.delete'|trans}}</button>
+                    <a class="button bg-blue" href="{{ path('posts_edit', {post: post.id} )}}">{{ 'actions.edit'|trans }}</a>
+                    <button class="ps button bg-red js-delete-element" data-href="{{ path('posts_delete', { post: post.id }) }}">{{ 'actions.delete'|trans}}</button>
                 </td>
             </tr>
             {% endfor %}

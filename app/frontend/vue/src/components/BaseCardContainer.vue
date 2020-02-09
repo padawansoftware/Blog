@@ -1,9 +1,6 @@
 <template>
-    <div>
-        <slot name="title"></slot>
-        <div class="container">
-            <slot></slot>
-        </div>
+    <div class="card-container">
+        <slot></slot>
     </div>
 </template>
 
@@ -14,7 +11,7 @@
 </script>
 
 <style scoped>
-    .container {
+    .card-container {
         display: flex;
         flex-wrap: wrap;
 

@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div class="collection-posts-view">
+        <h1 id="title">{{ collection.name }}</h1>
         <posts-container :posts="posts">
             <template slot="title">
                 <h1 id="title"> {{ collection.name }} </h1>

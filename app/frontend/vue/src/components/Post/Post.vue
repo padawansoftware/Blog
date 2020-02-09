@@ -4,16 +4,19 @@
 <template>
     <div class="post">
         <slot name="title">
-            <h1>{{ post.title }}</h1>
+            <h1 class="title">{{ post.title }}</h1>
         </slot>
         <div class="chapters line-numbers">
+            <!-- Chapter -->
             <div class="chapter"
                 v-for="chapter in post.chapters"
             >
-                <a :href="chapter.title|hash" :id="chapter.title|slugify">
+                <!-- Chapter title-->
+                <a :id="chapter.title|slugify" class="title" :href="chapter.title|hash">
                     <h2 v-if="post.chapters.length > 1">{{ chapter.title }}</h2>
                 </a>
-                <div v-html="chapter.content"></div>
+                <!-- Chapter content -->
+                <div class="content" v-html="chapter.content"></div>
             </div>
         </div>
 
@@ -84,32 +87,38 @@
 </script>
 
 <style scoped>
-    h1 {
-        text-align: center;
-        font-size: 40px;
-        font-family: "Star Wars";
-        text-transform: lowercase;
-        color: var(--yellow);
-    }
-
     .post {
         position: relative;
 
         margin-bottom: 50px;
-        border: 1px solid var(--yellow);
+        border: 1px solid var(--primary-color);
+
         border-radius: 5px;
         padding: 0 15%;
-
         background: black;
+
+        [data-theme="aliance"] & {
+            background: none;
+            --text-color: black;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 40px;
+            font-family: "Star Wars";
+            text-transform: lowercase;
+            color: var(--primary-color);
+        }
 
         .chapters {
             display: flex;
+
             justify-content: center;
             flex-direction: column;
             align-items: center;
             margin-bottom: 20px;
 
-            color: white;
+            color: var(--text-color);
             line-height: 1.7;
 
             .chapter {

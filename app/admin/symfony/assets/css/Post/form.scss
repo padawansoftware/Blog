@@ -1,11 +1,10 @@
-#chapter_selector {
+#chapter_actions {
     display: flex;
     margin-bottom: 20px;
 
     button.chapter {
         height: 25px;
         padding: 5px 10px;
-        margin-right: 10px;
 
         background: var(--green);
         color:white;
@@ -16,10 +15,18 @@
         line-height: 15px;
         border-radius: 3px;
 
+        &:not(:last-child) {
+            margin-right: 10px;
+        }
+
         &.active {
             background-color: black !important;
         }
     }
+}
+
+#chapter_selector {
+    margin: 0 20px;
 }
 
 #chapters {
@@ -30,4 +37,8 @@
             display: block;
         }
     }
+}
+
+#blog-remove-chapter, #blog-add-chapter {
+    background-color: gray;
 }

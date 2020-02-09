@@ -11,22 +11,21 @@
     </head>
     <body>
     {% block body %}
-        <section class="body">
-            <!-- Left lateral menu -->
-            {{ include ('Partial/lateral_menu.html.twig') }}
+        <!-- Left lateral menu -->
+        {{ include ('Partial/lateral_menu.html.twig') }}
 
-            <!-- Page -->
-            <div id="page">
-                {% if has_header() %}
-                {{ include ('Partial/content_header.html.twig')}}
-                {% endif %}
+        <!-- Page -->
+        <div id="page">
+            {% if has_header() %}
+            {{ include ('Partial/content_header.html.twig')}}
+            {% endif %}
 
-                <!-- Page content-->
-                <div id="content">
-                    {% block content %}{% endblock %}
-                </div>
+            <!-- Page content-->
+            <div id="content">
+                {% block content %}{% endblock %}
             </div>
-        </section>
+        </div>
+
         <!-- Load main js -->
         <script src="{{ asset('build/webpack/app.js') }}"></script>
 
@@ -40,8 +39,8 @@
             {% endfor %}
         </script>
 
+        <!-- Load view-dependant js -->
         {% block javascripts %}{% endblock %}
-
     {% endblock body %}
     </body>
 </html>

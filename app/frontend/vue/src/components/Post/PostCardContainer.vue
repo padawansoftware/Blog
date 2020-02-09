@@ -1,8 +1,5 @@
 <template>
     <card-container>
-        <template slot="title">
-            <slot name="title"></slot>
-        </template>
         <card
             v-for="post in posts"
             :to="{ name: 'posts-slug', params: {slug: post.slug}}"

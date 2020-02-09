@@ -11,7 +11,7 @@
 {% block content %}
 <div class="panel col-md-12">
     <div class="tright mbottom-10">
-        <a href="{{ path('collections_create') }}"><button class="ps">{{ 'collection.add_new'|trans }} </button></a>
+        <a class="button" href="{{ path('collections_create') }}">{{ 'collection.add_new'|trans }}</a>
     </div>
 
     {% if collections | length > 0 %}
@@ -30,11 +30,11 @@
                     <td>{{ collection.id }}</td>
                     <td>{{ collection.name }}</td>
                     <td>
-                        <a href="{{ path('collections_posts', { collection: collection.id }) }}"><button class="ps">{{ 'post.plural'|trans ~ ' (' ~ collection.posts|length ~ ')'}}</button></a>
+                        <a class="button" href="{{ path('collections_posts', { collection: collection.id }) }}">{{ 'post.plural'|trans ~ ' (' ~ collection.posts|length ~ ')'}}</a>
                     </td>
                     <td>
-                        <a href="{{ path('collections_edit', { collection: collection.id }) }}"><button class="ps bg-blue">{{ 'actions.edit'|trans }}</button></a>
-                        <a href="{{ path('collections_delete', { collection: collection.id }) }}" class="js-delete-element"><button class="ps bg-red">{{ 'actions.delete'|trans }}</button>
+                        <a class="button bg-blue" href="{{ path('collections_edit', { collection: collection.id }) }}">{{ 'actions.edit'|trans }}</a>
+                        <button class="ps bg-red js-delete-element" data-href="{{ path('collections_delete', { collection: collection.id }) }}">{{ 'actions.delete'|trans }}</button>
                     </td>
                 </tr>
                 {% endfor %}

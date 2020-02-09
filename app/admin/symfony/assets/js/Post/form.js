@@ -23,17 +23,17 @@ var trumbowygParams = {
 require('../imageUploader.js')
 
 // Add new chapter
-$('#chapter_selector #blog-add-chapter').on('click', function() {
+$('#chapter_actions #blog-add-chapter').on('click', function() {
     addChapter($("#chapters .chapter").length);
 });
 
 // Select a chapter
-$('#chapter_selector').on('click', '.chapter', function() {
+$('#chapter_actions').on('click', '.chapter', function() {
     selectChapter(this.dataset.chapter);
 });
 
 // Remove a chapter
-$('#chapter_selector #blog-remove-chapter').on('click', function(event) {
+$('#chapter_actions #blog-remove-chapter').on('click', function(event) {
     event.preventDefault();
 
     $('#chapter_selector .chapter').last().remove();
@@ -42,7 +42,7 @@ $('#chapter_selector #blog-remove-chapter').on('click', function(event) {
 
 function addChapter(id)
 {
-    var chapterSelector = `<button class="ps chapter" data-chapter="${id}" title="">${id}</button>&nbsp;`;
+    var chapterSelector = `<button class="ps chapter" data-chapter="${id}" title="">${id}</button>`;
     var chapter = `
         <div class="chapter" data-chapter="${id}">
             <div class="group">
@@ -60,8 +60,8 @@ function addChapter(id)
         </div>
     `;
 
-    $('#chapter_selector .placeholder').before(chapterSelector);
-    $('#chapters .placeholder').before(chapter);
+    $('#chapter_selector').append(chapterSelector);
+    $('#chapters').append(chapter);
 
     trumbowyg(trumbowygParams);
 

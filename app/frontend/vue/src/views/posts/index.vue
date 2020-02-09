@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="posts-view">
         <h1 id="title"> Todos los posts </h1>
         <post-container :posts="posts"></post-container>
     </div>

@@ -1,6 +1,7 @@
 # Lateral menu translations
 lateral_menu:
     logout: Logout
+    goto_app: Go to app
 
 # Post specific translations
 post:

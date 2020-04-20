@@ -1,1 +1,3 @@
 # These are routes from the frontend environment
+page_detail:
+  path: /{slug}

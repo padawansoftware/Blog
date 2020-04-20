@@ -12,6 +12,7 @@ Encore
     .addEntry('Collection/form', './assets/js/Collection/form.js')
     .addEntry('Post/index', './assets/js/Post/index.js')
     .addEntry('Post/form', './assets/js/Post/form.js')
+    .addEntry('Page/form', './assets/js/Page/form.js')
 
     // Source code detection for browsers
     .enableSourceMaps(!Encore.isProduction())

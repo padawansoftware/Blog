@@ -4,10 +4,12 @@ import axios from "axios";
 
 import CollectionRepository from '@repository/CollectionRepository.js';
 import PostRepository from '@repository/PostRepository.js';
+import PageRepository from '@repository/PageRepository.js';
 
 const repositories = {
     collection: CollectionRepository,
-    post: PostRepository
+    post: PostRepository,
+    page: PageRepository
 }
 
 export default class Api {

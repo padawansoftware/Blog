@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     ps.assets_url: 'http://%env(resolve:MEDIA_DOMAIN)%'
+    ps.frontend_domain: '%env(resolve:FRONTEND_DOMAIN)%'
 
 services:
     # default configuration for services in *this* file

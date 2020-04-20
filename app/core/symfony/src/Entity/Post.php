@@ -4,6 +4,7 @@ namespace Core\Entity;
 use \DateTime;
 use PSUploaderBundle\Library\Annotation\Asset as AssetAnnotation;
 use Core\Library\Interfaces\EnabledInterface;
+use Core\Library\Interfaces\HashableInterface;
 use PSUploaderBundle\Library\Validation\ImageAsset as ImageAssetConstraint;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -18,7 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\HasLifecycleCallbacks
  * @AssetAnnotation("image")
  */
-class Post implements EnabledInterface
+class Post implements EnabledInterface, HashableInterface
 {
     /**
      * @ORM\Id()
@@ -345,5 +346,10 @@ class Post implements EnabledInterface
         $this->order = $order;
 
         return $this;
+    }
+
+    public function getHash(): string
+    {
+        return md5($this->slug);
     }
 }

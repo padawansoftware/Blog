@@ -43,6 +43,7 @@ status:
 actions:
     edit: Edit
     delete: Delete
+    preview: Preview
 
 # Alerts displayed
 alert:

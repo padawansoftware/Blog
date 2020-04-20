@@ -8,6 +8,7 @@ use FOS\RestBundle\Controller\Annotations;
 use FOS\RestBundle\Controller\FOSRestController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
+use FOS\RestBundle\View\View;
 
 class PostController extends FOSRestController
 {
@@ -36,12 +37,8 @@ class PostController extends FOSRestController
      * @Annotations\Get("/posts/{post}")
      * @ParamConverter("post", options={"fields": {"slug", "id"}})
      */
-    public function getPostAction(Post $post, PostService $postService)
+    public function getPostAction(Post $post)
     {
-        if ($post->isEnabled()) {
-            return $post;
-        }
-
-        throw $this->createNotFoundException();
+        return $post;
     }
 }

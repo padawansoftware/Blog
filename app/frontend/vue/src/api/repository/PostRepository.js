@@ -49,4 +49,14 @@ export default class PostRepository {
             }
         });
     }
+
+    /**
+     * Retrieve a preview of post in detail
+     *
+     * @param slug The slug that identifies the post
+     * @param preview The preview hash
+     */
+    async preview(slug, preview) {
+        return await this.api.get('/posts/' + slug, {params: {view: 'detail', preview}})
+    }
 }

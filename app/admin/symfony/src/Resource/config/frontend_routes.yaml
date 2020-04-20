@@ -1,1 +1,8 @@
 # These are routes from the frontend environment
+post_detail:
+  path: /posts/{slug}
+
+post_preview:
+  path: /posts/{slug}?preview={preview}
+  requirements:
+    preview: '[a-f0-9]{32}'

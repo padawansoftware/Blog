@@ -1,8 +1,8 @@
 // Load image uploader plugin
-require('../imageUploader.js')
+require('@js/imageUploader.js')
 
 // Utils
-var utils = require('../utils.js');
+var utils = require('@js/utils.js');
 
 // Create slug from titles
 $('#slug-button').click(function(){

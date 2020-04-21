@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="{{ asset('build/webpack/Post/form.css') }}">
+    {{ encore_entry_link_tags('Post/form') }}
 {% endblock %}
 
 {%  config_page {

@@ -1,26 +1,26 @@
 'use strict';
 
 // Style
-require('../../css/Post/form.scss');
+require('@css/Post/form.scss');
 
 // Utils
-var utils = require('../utils.js');
+var utils = require('@js/utils.js');
 
 // Chosen JS
 require('chosen-js');
 require('chosen-js/chosen.min.css');
 
 // Import routing
-var Routing = require('../JSRouting.js');
+var Routing = require('@js/JSRouting.js');
 
 // Trumowyg plugin function
-var trumbowyg = require('../trumbowyg.js');
+var trumbowyg = require('@js/trumbowyg.js');
 var trumbowygParams = {
     serverPath: Routing.generate('_posts_upload_chapter_image', {'post': $('.post').data('post')})
 }
 
 // Load image uploader plugin
-require('../imageUploader.js')
+require('@js/imageUploader.js')
 
 // Add new chapter
 $('#chapter_actions #blog-add-chapter').on('click', function() {
@@ -86,3 +86,4 @@ $('#slug-button').click(function(){
     $('#post_slug').val(utils.slugify(title));
 });
 
+a

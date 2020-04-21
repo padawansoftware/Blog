@@ -1,4 +1,5 @@
 var Encore = require('@symfony/webpack-encore');
+var path = require('path');
 
 Encore
     // Directory where the files are written
@@ -13,15 +14,19 @@ Encore
     .addEntry('Post/index', './assets/js/Post/index.js')
     .addEntry('Post/form', './assets/js/Post/form.js')
 
+    .addAliases({
+        "@css": path.resolve(__dirname, 'assets/css'),
+        "@js": path.resolve(__dirname, 'assets/js'),
+    })
+
     // Source code detection for browsers
     .enableSourceMaps(!Encore.isProduction())
 
-    // Refresh assets on each build
     .cleanupOutputBeforeBuild()
+    .enableSingleRuntimeChunk()
     .enableVersioning()
 
     .enableSassLoader()
-
     .autoProvidejQuery()
 ;
 

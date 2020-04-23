@@ -41,6 +41,11 @@
     const Spoiler = require('@padawansoftware/spoiler.js');
     require('@padawansoftware/spoiler.js/src/spoiler.css');
 
+    const MediumZoom = require('medium-zoom').default;
+    const mediumZoomConfig = {
+        background: '#4f4f4f9c'
+    }
+
     function slugify(string) {
         const a = 'àáäâãåăæąçćčđďèéěėëêęğǵḧìíïîįłḿǹńňñòóöôœøṕŕřßşśšșťțùúüûǘůűūųẃẍÿýźžż·/_,:;'
         const b = 'aaaaaaaaacccddeeeeeeegghiiiiilmnnnnooooooprrsssssttuuuuuuuuuwxyyzzz------'
@@ -74,6 +79,7 @@
             Spoiler.initAll();
             Prism.highlightAll();
             addResizeEvent();
+            MediumZoom('.post img', mediumZoomConfig);
         },
         filters: {
             hash: function(string) {
@@ -140,6 +146,7 @@
 
         img {
             max-width:100%;
+            max-height: 30vh;
         }
 
         pre {

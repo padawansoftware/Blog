@@ -10,7 +10,7 @@ module.exports = {
     context: path.resolve(__dirname),
     entry: './src/main.js',
     output: {
-        filename: 'app.js',
+        filename: 'app.[contenthash].js',
         publicPath: '/'
     },
     resolve: {

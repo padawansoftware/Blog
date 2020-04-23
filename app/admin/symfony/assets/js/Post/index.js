@@ -1,9 +1,9 @@
 'use strict';
 
 const Swal = require('sweetalert2')
-const ajax = require('../ajax')
-var Routing = require('../JSRouting');
-import sortable from '../sortable.js';
+const ajax = require('@js/ajax')
+var Routing = require('@js/JSRouting');
+import sortable from '@js/sortable.js';
 
 // Makte table sortable
 var table = document.querySelector('table tbody');

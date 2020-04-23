@@ -5,7 +5,7 @@
         <title>{% block title %}Padawan Software | Blog{% endblock %}</title>
 
          <!-- Our theme -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('build/webpack/app.css') }}">
+        {{ encore_entry_link_tags('app') }}
 
         {% block stylesheets %}{% endblock %}
     </head>
@@ -27,7 +27,7 @@
         </div>
 
         <!-- Load main js -->
-        <script src="{{ asset('build/webpack/app.js') }}"></script>
+        {{ encore_entry_script_tags('app') }}
 
         <!-- Display flash messages -->
         <script type="text/javascript">

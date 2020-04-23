@@ -1,10 +1,10 @@
 'use strict';
 
-require('../css/theme.scss');
+require('@css/theme.scss');
 window.$ = require('jquery');
 
 const Swal = require('sweetalert2')
-const ajax = require('./ajax')
+const ajax = require('@js/ajax')
 
 window.toastr = require('toastr');
 require('toastr/build/toastr.min.css');

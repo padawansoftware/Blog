@@ -1,4 +1,4 @@
 'use strict';
 
 //Style
-require('../../css/Security/login.scss')
+require('@css/Security/login.scss')

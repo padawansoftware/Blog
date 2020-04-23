@@ -8,3 +8,11 @@
         {% endif %}
     </div>
 {%- endblock -%}
+
+{%- block form_row -%}
+    <div class="group">
+        {{- form_label(form) -}}
+        {{- form_widget(form) -}}
+        {{- form_help(form) -}}
+    </div>
+{%- endblock form_row -%}

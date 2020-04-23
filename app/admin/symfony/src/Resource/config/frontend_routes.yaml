@@ -6,3 +6,6 @@ post_preview:
   path: /posts/{slug}?preview={preview}
   requirements:
     preview: '[a-f0-9]{32}'
+
+page_detail:
+  path: /{slug}

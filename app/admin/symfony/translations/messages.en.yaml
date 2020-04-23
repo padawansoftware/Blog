@@ -25,6 +25,17 @@ chapter:
         content: Content
         enabled: Enabled
 
+page:
+    singular: Page
+    plural: Pages
+    add_new: Add new page
+    edit: Edit page
+    fields:
+        name: Name
+        content: Content
+        enabled: Enabled
+
+
 # Collection specific translations
 collection:
     singular: Collection

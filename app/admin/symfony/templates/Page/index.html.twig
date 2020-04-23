@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{%  config_page {
+        'title' : 'page.plural'|trans,
+        'breadcrumbs': {
+            ('page.plural'|trans): false
+        }
+    }
+%}
+
+{% block content %}
+<div class="panel col-md-12">
+    <div class="tright mbottom-10">
+        <a class="button" href="{{ path('page_create') }}">{{ 'page.add_new'|trans }}</a>
+    </div>
+
+    {% if pages | length > 0 %}
+        <table class="ps">
+            <thead>
+                <tr>
+                    <th>{{ 'table.name'|trans }}</th>
+                    <th>{{ 'table.actions'|trans}} </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for page in pages %}
+                <tr>
+                    <td>{{ page.name }}</td>
+                    <td>
+                        <a class="button bg-blue" href="{{ path('page_edit', { page: page.id }) }}">{{ 'actions.edit'|trans }}</a>
+                        <button class="ps bg-red js-delete-element" data-href="{{ path('page_delete', { page: page.id }) }}">{{ 'actions.delete'|trans }}</button>
+                        <a class="button" href="{{ path('frontend_page_detail', {slug: page.slug}) }}">{{ 'actions.preview'|trans }}</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert info">
+            {{ 'alert.no_elements'|trans }}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

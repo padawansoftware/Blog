@@ -17,6 +17,12 @@
 
     <ul id="menu-bar-bottom">
         <li>
+            <a href="{{ absolute_url(frontend_domain) }}">
+                <i class="fa fa-external-link-square"></i>
+                <span>{{ 'lateral_menu.goto_app'|trans }}</span>
+            </a>
+        </li>
+        <li>
             <a href="{{ path('logout') }}">
                 <i class="fa fa-sign-out"></i>
                 <span>{{ 'lateral_menu.logout'|trans }}</span>

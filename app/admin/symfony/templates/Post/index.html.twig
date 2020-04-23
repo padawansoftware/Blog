@@ -43,6 +43,7 @@
                 <td>
                     <a class="button bg-blue" href="{{ path('posts_edit', {post: post.id} )}}">{{ 'actions.edit'|trans }}</a>
                     <button class="ps button bg-red js-delete-element" data-href="{{ path('posts_delete', { post: post.id }) }}">{{ 'actions.delete'|trans}}</button>
+                    <a class="button" href="{{ path('frontend_post_preview', {slug: post.slug, preview: post.hash} ) }}" target="_blank">{{ 'actions.preview'|trans }}</a>
                 </td>
             </tr>
             {% endfor %}

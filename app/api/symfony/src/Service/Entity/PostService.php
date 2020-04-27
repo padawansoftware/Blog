@@ -37,4 +37,9 @@ class PostService extends BaseEntityService
             $this->request->get('limit', null)
         );
     }
+
+    public function hash(Post $post)
+    {
+        return md5($post->getSlug());
+    }
 }

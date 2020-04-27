@@ -9,7 +9,7 @@
 %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="{{ asset('build/webpack/Post/index.css') }}">
+    {{ encore_entry_link_tags('Post/index') }}
 {% endblock %}
 
 {% block content %}
@@ -43,6 +43,7 @@
                 <td>
                     <a class="button bg-blue" href="{{ path('posts_edit', {post: post.id} )}}">{{ 'actions.edit'|trans }}</a>
                     <button class="ps button bg-red js-delete-element" data-href="{{ path('posts_delete', { post: post.id }) }}">{{ 'actions.delete'|trans}}</button>
+                    <a class="button" href="{{ path('frontend_post_preview', {slug: post.slug, preview: post.hash} ) }}" target="_blank">{{ 'actions.preview'|trans }}</a>
                 </td>
             </tr>
             {% endfor %}
@@ -58,6 +59,5 @@
 
 
 {% block javascripts %}
-    {{ parent() }}
-    <script src="{{ asset('build/webpack/Post/index.js') }}"></script>
+    {{ encore_entry_script_tags('Post/index') }}
 {% endblock %}

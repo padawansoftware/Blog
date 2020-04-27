@@ -7,6 +7,7 @@
     "@padawansoftware/spoiler.js": "*",
     "axios": "^0.19.0",
     "font-awesome": "^4.7.0",
+    "medium-zoom": "^1.0.5",
     "prismjs": "^1.17.1",
     "qs": "^6.8.0",
     "vue": "^2.6.6",

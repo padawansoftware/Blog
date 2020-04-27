@@ -15,7 +15,14 @@
         },
         mounted() {
             let postSlug = this.$route.params.slug;
-            this.$api.get('post').detail(postSlug).then(response => this.post = response.data);
+            let postRepository = this.$api.get('post');
+
+            if('preview' in this.$route.query) {
+                postRepository.preview(postSlug, this.$route.query.preview).then(response => this.post = response.data);
+            } else {
+                postRepository.detail(postSlug).then(response => this.post = response.data);
+            }
+
         },
         components: {
             PostComponent

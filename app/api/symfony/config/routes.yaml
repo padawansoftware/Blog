@@ -6,6 +6,10 @@ CollectionController:
     resource: Api\Controller\CollectionController
     type: rest
 
+PageController:
+    resource: Api\Controller\PageController
+    type: rest
+
 app.swagger_ui:
     path: /doc
     methods: GET

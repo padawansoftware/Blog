@@ -4,6 +4,7 @@ const VueAutoRoutingPlugin = require('vue-auto-routing/lib/webpack-plugin');
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
 const environment = process.env.SERVER_ENV || '';
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
     mode: "development",
@@ -43,7 +44,8 @@ module.exports = {
                             fallback: {
                                 loader: 'file-loader',
                                 options: {
-                                    name: 'img/[name].[hash:8].[ext]'
+                                    name: 'img/[name].[hash:8].[ext]',
+                                    esModule: false
                                 }
                             }
                         }
@@ -78,6 +80,7 @@ module.exports = {
         }),
         new Dotenv({
             path: environment ? `./config/environments/${environment}.env` : './.env'
-        })
+        }),
+        new CleanWebpackPlugin()
     ]
 }

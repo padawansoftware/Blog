@@ -2,12 +2,12 @@
 namespace Api\Controller;
 
 use FOS\RestBundle\Controller\Annotations;
-use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Core\Entity\Page;
 use Api\Service\Entity\PageService;
 
-class PageController extends FOSRestController
+class PageController extends AbstractFOSRestController
 {
     /**
      * Get a page

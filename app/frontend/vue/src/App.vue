@@ -10,8 +10,7 @@
             <router-view></router-view>
         </div>
 
-        <button id="switch-theme" title="Cambiar tema" @click="switchTheme" :style="{
-            backgroundImage: 'url(' + theme.img + ')'}"></button>
+        <button id="switch-theme" title="Cambiar tema" @click="switchTheme" :style="{ 'background-image': `url(${theme.img})` }"></button>
     </div>
 </template>
 
@@ -40,6 +39,7 @@
       },
       computed: {
         theme: function() {
+            console.log(themes[this.themeID % themes.length])
             return themes[this.themeID % themes.length]
         }
       },
@@ -88,6 +88,5 @@
 </style>
 
 <style>
-    @import '~font-awesome/css/font-awesome.min.css';
     @import '@/assets/style/theme.scss';
 </style>

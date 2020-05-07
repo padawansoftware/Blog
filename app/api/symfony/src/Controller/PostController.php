@@ -5,12 +5,12 @@ use Api\Service\Entity\PostService;
 use Core\Entity\Post;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\RestBundle\Controller\Annotations;
-use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\View\View;
 
-class PostController extends FOSRestController
+class PostController extends AbstractFOSRestController
 {
     /**
      * Get posts list

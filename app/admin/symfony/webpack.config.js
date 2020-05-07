@@ -20,6 +20,11 @@ Encore
         "@js": path.resolve(__dirname, 'assets/js'),
     })
 
+    // Configure file-loader in images
+    .configureLoaderRule('images', loaderRule => {
+         loaderRule.options.esModule =  false;
+    })
+
     // Source code detection for browsers
     .enableSourceMaps(!Encore.isProduction())
 

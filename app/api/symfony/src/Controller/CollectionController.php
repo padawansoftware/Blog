@@ -5,10 +5,10 @@ use Core\Entity\Collection;
 use Api\Service\Entity\CollectionService;
 use Api\Service\Entity\PostService;
 use FOS\RestBundle\Controller\Annotations;
-use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
-class CollectionController extends FOSRestController
+class CollectionController extends AbstractFOSRestController
 {
     /**
      * Get collection list

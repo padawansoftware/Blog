@@ -6,10 +6,7 @@
     "require": {
         "php": "^7.0",
         "padawansoftware/uploader-bundle": "dev-master",
-        "doctrine/common": "*",
-        "doctrine/orm": "*",
-        "jms/serializer-bundle": "*",
-        "symfony/orm-pack": "*",
+        "jms/serializer": "^3.6",
         "symfony/validator": "*"
     },
     "minimum-stability": "dev",

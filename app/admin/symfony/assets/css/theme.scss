@@ -1,4 +1,4 @@
-@import "~font-awesome/css/font-awesome.min.css";
+@import "~@fortawesome/fontawesome-free/css/fontawesome.min.css", "~@fortawesome/fontawesome-free/css/solid.min.css";
 @import "~bootstrap/dist/css/bootstrap-grid.min.css";
 @import "color.css", "position.css";
 
@@ -80,13 +80,13 @@ form {
                         border: 1px solid #cccccc;
                         border-radius: 3px;
                         right: -30px;
-                        font-family: "FontAwesome";
                         padding: 5px;
                         line-height: 15px;
                     }
                 }
 
                 &:checked + label:before {
+                    font-family: 'Font Awesome 5 Free';
                     content: "\f00c";
                 }
             }

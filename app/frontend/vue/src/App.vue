@@ -39,7 +39,6 @@
       },
       computed: {
         theme: function() {
-            console.log(themes[this.themeID % themes.length])
             return themes[this.themeID % themes.length]
         }
       },

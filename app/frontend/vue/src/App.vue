@@ -11,10 +11,16 @@
         </div>
 
         <button id="switch-theme" title="Cambiar tema" @click="switchTheme" :style="{ 'background-image': `url(${theme.img})` }"></button>
+
+        <div v-if="cookieBar" id="cookie-bar">
+            Como ya sabes, esta web almacena datos. <a @click="cookiesInfo" :href="cookiesRoute.href" target="_blank">Más info</a>
+
+        </div>
     </div>
 </template>
 
 <script>
+    import SettingsManager from '@/service/SettingsManager';
     const themes = [
         {
             name: "star-wars",
@@ -32,6 +38,7 @@
 
     export default {
       name: 'app',
+      // Properties
       data: function() {
         return {
             themeID: 0,
@@ -40,14 +47,50 @@
       computed: {
         theme: function() {
             return themes[this.themeID % themes.length]
+        },
+        cookieBar: function() {
+            return ! SettingsManager.has('cookie-bar');
+        },
+        cookiesRoute: function() {
+            return this.$router.resolve({name:'slug', params:{slug: 'cookies'}});
         }
       },
+      // Lifecycle
+      beforeMount() {
+        let storedTheme = SettingsManager.get('theme');
+        if (storedTheme) {
+            this.themeID = storedTheme;
+        }
+      },
+      // Methods
       methods: {
         switchTheme: function(event) {
             this.themeID++;
+            SettingsManager.set('theme', this.themeID % themes.length);
+        },
+        cookiesInfo: function(event) {
+            removeCookieBar(event);
         }
       }
     }
+
+    // Cookies bar
+    function removeCookieBar(event)
+    {
+        var cookieBar = document.getElementById('cookie-bar');
+        if (cookieBar) {
+            cookieBar.parentNode.removeChild(cookieBar);
+            document.removeEventListener('scroll', removeCookieBar);
+            SettingsManager.set('cookie-bar', true);
+        }
+    }
+
+    // Add on scroll element
+    window.onload = function() {
+        if (document.getElementById('cookie-bar')) {
+            document.addEventListener('scroll', removeCookieBar);
+        }
+    };
 </script>
 
 <style scoped>
@@ -83,6 +126,18 @@
             border: none;
             -moz-outline-style: none;
         };
+    }
+
+    #cookie-bar {
+        position: fixed;
+        bottom: 0;
+
+        width: 100%;
+        padding: 10px;
+
+        text-align: center;
+        background-color: black;
+        border-top: 1px solid var(--primary-color);
     }
 </style>
 

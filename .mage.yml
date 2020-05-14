@@ -29,6 +29,7 @@ magephp:
             releases: 2
             exclude:
                 - '*symfony/var/*'
+                - 'node_modules'
             hosts:
                 - localhost
             pre-deploy:
@@ -62,6 +63,7 @@ magephp:
             releases: 2
             exclude:
                 - '*symfony/var/*'
+                - 'node_modules'
             hosts:
                 - localhost
             pre-deploy:
@@ -95,6 +97,7 @@ magephp:
             releases: 4
             exclude:
                 - '*symfony/var/*'
+                - 'node_modules'
             hosts:
                 - localhost
             pre-deploy:

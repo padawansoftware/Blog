@@ -39,6 +39,7 @@
 
             border-radius: 5px;
             background-size: cover;
+            background-color: var(--primary-color);
 
             .title-cover {
                 position: absolute;

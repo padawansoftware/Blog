@@ -24,7 +24,9 @@
 </template>
 
 <script>
+    import State from '@/state.js';
     import SettingsManager from '@/service/SettingsManager';
+
     const themes = [
         {
             name: "star-wars",
@@ -45,13 +47,14 @@
       // Properties
       data: function() {
         return {
+            state: State,
             themeID: 0,
-            hidePreloader: false
+            hidePreloader: false,
         };
       },
       computed: {
         theme: function() {
-            return themes[this.themeID % themes.length]
+            return this.state.theme
         },
         cookieBar: function() {
             return ! SettingsManager.has('cookie-bar');
@@ -66,15 +69,20 @@
         if (storedTheme) {
             this.themeID = storedTheme;
         }
+        this.state.theme = themes[this.themeID];
       },
       watch: {
-        '$route': 'loading'
+        '$route': 'loading',
+        'themeID': function()
+        {
+            this.state.theme = themes[this.themeID];
+            SettingsManager.set('theme', this.themeID);
+        }
       },
       // Methods
       methods: {
         switchTheme: function(event) {
-            this.themeID++;
-            SettingsManager.set('theme', this.themeID % themes.length);
+            this.themeID = (this.themeID + 1) % themes.length;
         },
         cookiesInfo: function(event) {
             removeCookieBar(event);

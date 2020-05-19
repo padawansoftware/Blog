@@ -1,5 +1,9 @@
 <template>
     <div id="app" :data-theme="theme.name">
+        <div id="preloader" :class="{hidden: hidePreloader}">
+            <img :src="theme.img" class="loader">
+        </div>
+
         <header id="header">
             <router-link :to="{name: 'index'}">
                 Padawan Software
@@ -7,7 +11,7 @@
         </header>
         <nav id="menu"></nav>
         <div id="content">
-            <router-view></router-view>
+            <router-view @loaded="loaded"></router-view>
         </div>
 
         <button id="switch-theme" title="Cambiar tema" @click="switchTheme" :style="{ 'background-image': `url(${theme.img})` }"></button>
@@ -42,6 +46,7 @@
       data: function() {
         return {
             themeID: 0,
+            hidePreloader: false
         };
       },
       computed: {
@@ -62,6 +67,9 @@
             this.themeID = storedTheme;
         }
       },
+      watch: {
+        '$route': 'loading'
+      },
       // Methods
       methods: {
         switchTheme: function(event) {
@@ -70,6 +78,14 @@
         },
         cookiesInfo: function(event) {
             removeCookieBar(event);
+        },
+        loaded: function(event)
+        {
+            this.hidePreloader = true;
+        },
+        loading: function(event)
+        {
+            this.hidePreloader = false;
         }
       }
     }
@@ -138,6 +154,36 @@
         text-align: center;
         background-color: black;
         border-top: 1px solid var(--primary-color);
+    }
+
+    #preloader {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 999999;
+        background: #000;
+
+        [data-theme="aliance"] & {
+            background: #fff;
+        }
+
+        &.hidden {
+            visibility: hidden;
+            opacity: 0;
+            transition: all 400ms;
+        }
+
+        img {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -13px;
+            margin-left: -13px;
+        }
     }
 </style>
 

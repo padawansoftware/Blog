@@ -18,9 +18,9 @@
             let postRepository = this.$api.get('post');
 
             if('preview' in this.$route.query) {
-                postRepository.preview(postSlug, this.$route.query.preview).then(response => this.post = response.data);
+                postRepository.preview(postSlug, this.$route.query.preview).then(response => this.post = response.data).then(response => this.$emit('loaded'));
             } else {
-                postRepository.detail(postSlug).then(response => this.post = response.data);
+                postRepository.detail(postSlug).then(response => this.post = response.data).then(response => this.$emit('loaded'));
             }
 
         },

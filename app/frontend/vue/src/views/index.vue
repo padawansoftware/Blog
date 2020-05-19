@@ -37,7 +37,7 @@
                 }
 
                 this.posts = posts;
-            });
+            }).then(response => this.$emit('loaded'));
         },
         components: {
             Post

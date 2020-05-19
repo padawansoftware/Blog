@@ -16,7 +16,7 @@
             let pageSlug = this.$route.params.slug;
             this.$api.get('page').get(pageSlug).then(response => {
                 this.page = response.data
-            });
+            }).then(response => this.$emit('loaded'));
         }
     }
 </script>

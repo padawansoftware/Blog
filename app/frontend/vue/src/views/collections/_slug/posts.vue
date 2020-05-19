@@ -22,7 +22,7 @@
         mounted () {
             let collectionSlug = this.$route.params.slug;
             this.$api.get('collection').detail(collectionSlug).then(response => this.collection = response.data);
-            this.$api.get('collection').posts(collectionSlug).then(response => this.posts = response.data);
+            this.$api.get('collection').posts(collectionSlug).then(response => this.posts = response.data).then(response => this.$emit('loaded'));
         },
         components: {
             PostsContainer: PostsCardContainer

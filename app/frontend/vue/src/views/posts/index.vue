@@ -19,7 +19,7 @@ export default {
         PostContainer: PostCardContainer
     },
     mounted() {
-        this.$api.get('post').list().then(response => this.posts = response.data)
+        this.$api.get('post').list().then(response => this.posts = response.data).then(response => this.$emit('loaded'));
     }
 }
 </script>

@@ -21,7 +21,7 @@
             }
         },
         mounted () {
-            this.$api.get('collection').list().then(response => this.collections = response.data);
+            this.$api.get('collection').list().then(response => this.collections = response.data).then(response => this.$emit('loaded'));
         }
     }
 </script>

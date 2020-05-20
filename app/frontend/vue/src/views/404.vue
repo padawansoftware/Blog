@@ -1,35 +1,21 @@
 <template>
     <div id="container">
         <h1>Esta no es la página que estás buscando</h1>
-        <img :src="this.img">
+        <img :src="img">
     </div>
 </template>
 
 <script>
-    import State from '@/state.js';
-
     export default {
-        data() {
-            return {
-                state: State,
-                img: null
-            };
-        },
         mounted()
         {
-            this.img = this.getImg();
             this.$emit('loaded');
         },
-        watch: {
-            "state.theme": function() {
-                this.img = this.getImg();
+        computed: {
+            img: function() {
+                return require('@/assets/images/droids-' + (this.$state.theme.name == 'aliance' ? 'white' : 'black') + '.png');
             }
         },
-        methods: {
-            getImg() {
-                return require('@/assets/images/droids-' + (this.state.theme.name == 'aliance' ? 'white' : 'black') + '.png');
-            }
-        }
     }
 </script>
 

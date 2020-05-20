@@ -3,28 +3,15 @@ import Router from 'vue-router'
 import Routes from './routes.js'
 import App from './App.vue'
 import Api from '@/api/api.js'
+import State from '@/state.js'
 
 Vue.config.productionTip = false
 
+// Register vue-router
 Vue.use(Router)
 
-var vue = new Vue({
-  render: function (h) { return h(App) },
-  el: '#app',
-  router: Routes,
-})
-
-
 // Configure Axios
-
 var api = new Api();
-
-Vue.mixin({
-    beforeCreate() {
-        this.$api = api;
-    }
-})
-
 api.axios.interceptors.response.use(
     response => response,
     error => {
@@ -35,3 +22,18 @@ api.axios.interceptors.response.use(
         return Promise.reject(error);
     }
 );
+
+// Register global variables
+Vue.mixin({
+    beforeCreate() {
+        this.$api = api;
+        Vue.util.defineReactive(this,"$state", State);
+    }
+})
+
+// Init instance
+var vue = new Vue({
+  render: function (h) { return h(App) },
+  el: '#app',
+  router: Routes,
+})

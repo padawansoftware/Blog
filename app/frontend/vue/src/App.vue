@@ -24,7 +24,6 @@
 </template>
 
 <script>
-    import State from '@/state.js';
     import SettingsManager from '@/service/SettingsManager';
 
     const themes = [
@@ -47,14 +46,13 @@
       // Properties
       data: function() {
         return {
-            state: State,
             themeID: 0,
             hidePreloader: false,
         };
       },
       computed: {
         theme: function() {
-            return this.state.theme
+            return this.$state.theme
         },
         cookieBar: function() {
             return ! SettingsManager.has('cookie-bar');
@@ -69,13 +67,13 @@
         if (storedTheme) {
             this.themeID = storedTheme;
         }
-        this.state.theme = themes[this.themeID];
+        this.updateTheme();
       },
       watch: {
         '$route': 'loading',
         'themeID': function()
         {
-            this.state.theme = themes[this.themeID];
+            this.updateTheme();
             SettingsManager.set('theme', this.themeID);
         }
       },
@@ -94,6 +92,9 @@
         loading: function(event)
         {
             this.hidePreloader = false;
+        },
+        updateTheme: function() {
+            this.$state.theme = themes[this.themeID];
         }
       }
     }

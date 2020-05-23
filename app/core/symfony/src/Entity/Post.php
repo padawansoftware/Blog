@@ -77,7 +77,7 @@ class Post implements EnabledInterface, HashableInterface
      * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Collection", mappedBy="posts")
-     * @JMS\Exclude
+     * @JMS\Groups({"detail"})
      */
     protected $collections;
 

@@ -20,7 +20,7 @@ class Collection
      * @ORM\Id()
      * @ORM\Column(name="collection_id", type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @JMS\Groups("list")
+     * @JMS\Groups({"list"})
      */
     protected $id;
 
@@ -28,7 +28,7 @@ class Collection
      * @var string
      *
      * @ORM\Column(name="collection_name", type="string")
-     * @JMS\Groups("list")
+     * @JMS\Groups({"list", "detail"})
      */
     protected $name;
 
@@ -37,7 +37,7 @@ class Collection
      *
      * @ORM\Column(name="post_slug", type="string")
      * @Assert\Regex(pattern="/^[a-z0-9][a-z0-9\-]*[a-z0-9]$/")
-     * @JMS\Groups("list")
+     * @JMS\Groups({"list", "detail"})
      */
     protected $slug;
 

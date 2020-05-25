@@ -34,6 +34,8 @@ services:
             - media
         environment:
             VIRTUAL_HOST: ${VIRTUAL_HOST}
+            VIRTUAL_PROTO: https
+            VIRTUAL_PORT: 443
         networks:
             - default
             - proxy

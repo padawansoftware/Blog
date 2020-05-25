@@ -27,6 +27,7 @@ services:
         volumes:
             - ./services/proxy/etc/nginx/sites-available:/etc/nginx/sites-available
             - ./services/proxy/etc/nginx/sites-available:/etc/nginx/sites-enabled
+            - ./services/proxy/etc/nginx/certificates:/etc/nginx/certificates
         depends_on:
             - php
             - frontend

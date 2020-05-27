@@ -39,7 +39,6 @@ services:
         networks:
             - default
             - proxy
-                aliases: ${VIRTUAL_HOST}
         tty: true
     frontend:
         container_name: blog-${SERVER_ENV}-frontend

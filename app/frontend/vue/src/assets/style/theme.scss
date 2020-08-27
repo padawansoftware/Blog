@@ -22,19 +22,17 @@ body {
 
 #app {
     --primary-color: var(--yellow);
-    --code-tag-color: #777;
+    --code-tag-color: #7776;
     --text-color: #eee;
     --link-color: var(--yellow);
 
     &[data-theme="empire"] {
         --primary-color: var(--red);
-        --code-tag-color: #444;
     }
 
     &[data-theme="aliance"] {
         --primary-color: var(--blue);
         --link-color: var(--blue);
-        --code-tag-color: #bbb;
 
         background-image: initial;
     }

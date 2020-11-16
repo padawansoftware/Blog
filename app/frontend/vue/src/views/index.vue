@@ -1,20 +1,20 @@
 <template>
-    <div class="post-container">
-        <!-- Index posts-->
-        <post
-            v-for="post in posts"
+    <div>
+        <router-link
+            v-for="(post, index) in posts"
             :key="post.id"
-            :post="post"
+            :to="{name:'posts-slug', params: {slug: post.slug}}"
         >
-        </post>
+            <post :post="post"></post>
+        </router-link>
 
         <!-- Display more posts -->
-        <router-link id="more" :to="{name:'posts-index'}">ver más</router-link>
+        <router-link id="more" :to="{name:'posts-index'}">ver todos</router-link>
     </div>
 </template>
 
 <script>
-    import Post from '@components/Index/Post.vue';
+    import Post from '@components/Post/Post.vue';
 
     const POST_LIMIT = 5;
 
@@ -46,17 +46,28 @@
 </script>
 
 <style scoped>
+    .post {
+        border-top: 1px solid var(--primary-color);
+        border-width: 1px 0;
+    }
+    .separator {
+        border: 1px solid var(--primary-color);
+    }
+
     #more {
         display: block;
 
+        margin-top: 20px;
         padding: 5px 10px;
-        margin-bottom: 20px;
 
-        text-align: center;
-        border: 1px solid var(--primary-color);
+        border: solid var(--primary-color);
+        border-width: 1px 0;
 
         color: var(--primary-color);
         font-family: "Star Wars";
         font-weight: bolder;
+        text-align: center;
+        background-color: var(--second-background);
+
     }
 </style>

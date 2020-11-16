@@ -1,15 +1,11 @@
 <template>
-        <router-link class="card" :to="to">
-            <div
-                class="content"
-                :style="style"
-            >
-                <div class="title-cover">
-                    <span class="title">{{ title }}</span>
-                    <span class="subtitle"><slot name="subtitle"></slot></span>
-                </div>
-            </div>
-        </router-link>
+    <router-link class="card" :to="to">
+        <img :src="this.image">
+        <div class="title-cover">
+            <span class="title">{{ title }}</span>
+            <span class="subtitle"><slot name="subtitle"></slot></span>
+        </div>
+    </router-link>
 </template>
 
 <script>
@@ -19,52 +15,61 @@
             'to',
             'title',
             'image',
-        ],
-        computed: {
-            style: function() {
-                return `
-                    background-image: url('${this.image}');
-                `
-            }
-        },
+        ]
     }
 </script>
 
 <style scoped>
     .card {
-        .content {
-            position: relative;
+        position: relative;
+        padding-top: 50%;
+        overflow: hidden;
 
+        & > * {
+            position: absolute;
+        }
+
+        img {
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100%;
+            object-fit: cover;
+            object-position: 50%;
 
-            border-radius: 5px;
-            background-size: cover;
-            background-color: var(--primary-color);
+            background-color: #000;
+            transition: all 0.3s ease-in;
+        }
 
-            .title-cover {
-                position: absolute;
-                bottom: 0px;
+        &:hover img {
+            transform: scale(1.1);
+        };
 
-                width: 100%;
-                padding: 10px 0 10px 100px;
+        .title-cover {
+            position: absolute;
+            bottom: 0;
 
-                background: #0008;
-                font-family: "Star Wars";
-                text-transform: lowercase;
+            height: 60px;
+            width: 100%;
+            padding: 10px;
 
-                .title {
-                    font-size: 18px;
-                }
+            background: #000B;
+            font-family: "Star Wars";
+            text-transform: lowercase;
+            line-height: 18px;
 
-                .subtitle {
-                    display: block;
+            .title {
+                font-size: 16px;
+            }
 
-                    margin-top: 5px;
+            .subtitle {
+                display: block;
 
-                    font-family: Rokkitt, serif;
-                    font-size: 14px;
-                    color: white;
-                }
+                margin-top: 5px;
+
+                font-family: Rokkitt, serif;
+                font-size: 14px;
+                color: white;
             }
         }
     }

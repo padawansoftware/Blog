@@ -1,5 +1,7 @@
 'use strict';
 
+const $ = require('jquery');
+
 module.exports = {
     delete(deleteUrl, successFunction, errorFunction) {
         $.ajax({

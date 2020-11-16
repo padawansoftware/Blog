@@ -1,3 +1,7 @@
+'use strict';
+
+const $ = require('jquery');
+
 // Load image uploader plugin
 require('@js/imageUploader.js')
 

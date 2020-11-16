@@ -40,7 +40,7 @@
         },
         computed: {
             theme: function() {
-                return this.$state.theme;
+                return this.$store.state.theme;
             },
         },
         methods: {
@@ -48,7 +48,7 @@
                 this.themeID = (this.themeID + 1) % themes.length;
             },
             updateTheme: function() {
-                this.$state.theme = themes[this.themeID];
+                this.$store.commit('setTheme', themes[this.themeID]);
             }
         },
         watch: {

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div id="preloader" :class="{hidden: hidePreloader}">
-            <img :src="this.$state.theme.img" class="loader">
+            <img :src="this.$store.state.theme.img" class="loader">
         </div>
         <slot :loaded="loaded"></slot>
     </div>

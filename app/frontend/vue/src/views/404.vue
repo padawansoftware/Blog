@@ -13,7 +13,7 @@
         },
         computed: {
             img: function() {
-                return require('@/assets/images/droids-' + (this.$state.theme.name == 'aliance' ? 'white' : 'black') + '.png');
+                return require('@/assets/images/droids-' + (this.$store.state.theme.name == 'aliance' ? 'white' : 'black') + '.png');
             }
         },
     }

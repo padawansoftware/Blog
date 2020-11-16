@@ -1,5 +1,5 @@
 <template>
-    <div id="app" :data-theme="themeName">
+    <div id="app" :data-theme="this.$store.state.theme.name">
         <preloader v-slot="preloader">
             <header id="header">
                 <router-link :to="{name: 'index'}">
@@ -27,11 +27,6 @@
             Preloader,
             CookieBar,
             SwitchTheme
-        },
-        computed: {
-            themeName() {
-                return this.$state.theme.name
-            }
         }
     }
 </script>

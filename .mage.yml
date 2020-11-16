@@ -30,6 +30,7 @@ magephp:
             exclude:
                 - '*symfony/var/*'
                 - 'node_modules'
+                - 'v8-compile-cache-0'
             hosts:
                 - localhost
             pre-deploy:
@@ -64,6 +65,7 @@ magephp:
             exclude:
                 - '*symfony/var/*'
                 - 'node_modules'
+                - 'v8-compile-cache-0'
             hosts:
                 - localhost
             pre-deploy:
@@ -98,6 +100,7 @@ magephp:
             exclude:
                 - '*symfony/var/*'
                 - 'node_modules'
+                - 'v8-compile-cache-0'
             hosts:
                 - localhost
             pre-deploy:

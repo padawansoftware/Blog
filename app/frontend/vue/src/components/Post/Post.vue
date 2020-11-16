@@ -12,9 +12,8 @@
                 v-for="chapter in post.chapters"
             >
                 <!-- Chapter title-->
-                <a :id="chapter.title|slugify" class="title" :href="chapter.title|hash">
-                    <h2 v-if="post.chapters.length > 1">{{ chapter.title }}</h2>
-                </a>
+                <h2 v-if="post.chapters.length > 1" id="chapter.title|slugify">{{ chapter.title }}</h2>
+
                 <!-- Chapter content -->
                 <div class="content" v-html="chapter.content"></div>
             </div>
@@ -70,6 +69,7 @@
         });
     }
 
+
     export default {
         name: 'post',
         props: [
@@ -93,27 +93,25 @@
 </script>
 
 <style scoped>
+    @import "@/assets/style/variables.scss";
+
     .post {
-        position: relative;
-
-        margin-bottom: 50px;
-        border: 1px solid var(--primary-color);
-
-        border-radius: 5px;
-        padding: 0 15%;
-        background: black;
+        background-color: var(--second-background);
+        padding: 20px 30px;
 
         [data-theme="aliance"] & {
             background: none;
             --text-color: black;
         }
 
-        h1 {
+        .title {
             text-align: center;
             font-size: 40px;
             font-family: "Star Wars";
             text-transform: lowercase;
             color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 50px;
         }
 
         .chapters {
@@ -122,10 +120,11 @@
             justify-content: center;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 20px;
+            padding-bottom: 20px;
 
+            font-size: $contentFontSize;
             color: var(--text-color);
-            line-height: 1.7;
+            line-height: $contentLineHeight;
 
             .chapter {
                 width: 100%;
@@ -140,6 +139,10 @@
 
 <style>
     .post .chapter {
+        h2{
+            color: var(--primary-color);
+        }
+
         a {
             font-weight: bold;
         }

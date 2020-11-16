@@ -1,8 +1,5 @@
 <template>
-    <div class="content-wrapper">
-        <div class="page" v-html="page.content">
-        </div>
-    </div>
+    <div class="page" v-html="page.content"></div>
 </template>
 
 <script>
@@ -24,20 +21,13 @@
 
 
 <style scoped>
+    @import "@/assets/style/variables.scss";
+
     .page {
-        position: relative;
-
-        margin-bottom: 50px;
-        border: 1px solid var(--primary-color);
-
-        border-radius: 5px;
-        padding: 0 15%;
-        background: black;
+        padding: 20px 30px;
         color: var(--text-color);
 
-        [data-theme="aliance"] & {
-            background: none;
-            --text-color: black;
-        }
+        font-size: $contentFontSize;
+        line-height: $contentLineHeight;
     }
 </style>

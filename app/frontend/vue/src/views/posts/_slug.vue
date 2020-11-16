@@ -2,8 +2,8 @@
     <div class="post-container">
         <post-component :post="post"></post-component>
         <div id="collections" v-if="post.collections && post.collections.length">
-            <strong>Colecciones:</strong>
-            <template v-for="(collection, index) in post.collections"   >
+            <strong class="title">Colecciones:</strong>
+            <template v-for="collection in post.collections">
                 <span class="code-tag">
                     <router-link :to="{name:'collections-slug-posts', params: {slug: collection.slug}}">{{collection.name}}</router-link>
                 </span>
@@ -46,8 +46,12 @@
     }
 
     #collections {
-        margin: 20px auto;
-        border: 1px solid var(--primary-color);
-        padding: 10px;
+        margin-top: 50px;
+        padding: 20px 30px;
+        background-color: var(--second-background);
+
+        .title {
+            color: var(--text-color);
+        }
     }
 </style>

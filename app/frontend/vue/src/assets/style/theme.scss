@@ -1,4 +1,5 @@
 @import '~@fortawesome/fontawesome-free/css/fontawesome.min.css';
+@import 'variables.scss';
 
 @font-face {
     font-family: "Star Wars";
@@ -25,6 +26,7 @@ body {
     --code-tag-color: #7776;
     --text-color: #eee;
     --link-color: var(--yellow);
+    --second-background: rgba(12, 23, 34, 0.4);
 
     &[data-theme="empire"] {
         --primary-color: var(--red);
@@ -33,6 +35,8 @@ body {
     &[data-theme="aliance"] {
         --primary-color: var(--blue);
         --link-color: var(--blue);
+        --second-background: none;
+        --text-color: black;
 
         background-image: initial;
     }
@@ -45,25 +49,8 @@ body {
     margin: 0;
 
     font-family: Helvetica, Arial, sans-serif;
-    line-height: 1.4em;
-    font-size: 21px;
     color: var(--text-color);
     background-image: url('assets/images/fondoestrellado.png');
-}
-
-header {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-
-    height: 60px;
-    width: 50%;
-    padding: 10px 0;
-
-    img {
-        height: 100%;
-    }
 }
 
 * {
@@ -82,11 +69,6 @@ h1 {
     line-height: 40px;
 }
 
-.post-container {
-    width: 70vw;
-    margin: 0 auto;
-}
-
 .content-wrapper {
     width: 70vw;
     margin: 0 auto;
@@ -96,6 +78,6 @@ h1 {
     background-color: var(--code-tag-color);
     border-radius: 3px;
     font-family: courier, monospace;
-    padding: 0 3px;
+    padding: 3px 5px;
     white-space: nowrap;
 }

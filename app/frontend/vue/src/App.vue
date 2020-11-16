@@ -2,7 +2,7 @@
     <div id="app" :data-theme="this.$store.state.theme.name">
         <preloader v-slot="preloader">
             <header id="header">
-                <router-link :to="{name: 'index'}">
+                <router-link :to="{name: 'index'}" class="logo">
                     Padawan Software
                 </router-link>
             </header>
@@ -32,80 +32,24 @@
 </script>
 
 <style scoped>
-    #content {
-        margin-top: 60px;
-        padding: 10px;
+    @import '@/assets/style/variables.scss';
+
+    #app {
+        padding: 20px 0 50px 0;
     }
 
     header {
+        max-width: $max-width;
+        width: $width;
+        margin: auto;
+        margin-bottom: 100px;
         font-family: "Star Wars";
     }
 
-    #switch-theme {
-        position: fixed;
-        right: 20px;
-        bottom: 10px;
-
-        width: 30px;
-        height: 30px;
-
-        border: none;
-        border-radius: 100%;
-        opacity: 0.5;
-        background: transparent center/cover;
-        cursor: pointer;
-
-        &:hover {
-            opacity: 1;
-        }
-
-        &:focus, &:active {
-            outline: 0;
-            border: none;
-            -moz-outline-style: none;
-        };
-    }
-
-    #cookie-bar {
-        position: fixed;
-        bottom: 0;
-
-        width: 100%;
-        padding: 10px;
-
-        text-align: center;
-        background-color: black;
-        border-top: 1px solid var(--primary-color);
-    }
-
-    #preloader {
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        z-index: 999999;
-        background: #000;
-
-        [data-theme="aliance"] & {
-            background: #fff;
-        }
-
-        &.hidden {
-            visibility: hidden;
-            opacity: 0;
-            transition: all 400ms;
-        }
-
-        img {
-            width: 50px;
-            height: 50px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin-top: -13px;
-            margin-left: -13px;
-        }
+    #content {
+        max-width: $max-width;
+        width: $width;
+        margin: auto;
     }
 </style>
 

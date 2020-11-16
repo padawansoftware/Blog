@@ -9,7 +9,8 @@ RUN apt-get update && apt-get install -y \
     zip
 
 # Install npm
-RUN apt-get update && apt-get install -y npm
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
+    apt-get install -y nodejs
 
 # Install dependencies
 RUN npm install -g @vue/cli

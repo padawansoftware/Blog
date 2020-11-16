@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Routes from './routes.js'
 import App from './App.vue'
 import Api from '@/api/api.js'
-import State from '@/state.js'
+import Store from '@/store.js'
 
 Vue.config.productionTip = false
 
@@ -27,7 +27,6 @@ api.axios.interceptors.response.use(
 Vue.mixin({
     beforeCreate() {
         this.$api = api;
-        Vue.util.defineReactive(this,"$state", State);
     }
 })
 
@@ -36,4 +35,5 @@ var vue = new Vue({
   render: function (h) { return h(App) },
   el: '#app',
   router: Routes,
+  store: Store
 })

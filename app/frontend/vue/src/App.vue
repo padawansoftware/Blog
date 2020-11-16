@@ -1,121 +1,39 @@
 <template>
-    <div id="app" :data-theme="theme.name">
-        <div id="preloader" :class="{hidden: hidePreloader}">
-            <img :src="theme.img" class="loader">
-        </div>
+    <div id="app" :data-theme="themeName">
+        <preloader v-slot="preloader">
+            <header id="header">
+                <router-link :to="{name: 'index'}">
+                    Padawan Software
+                </router-link>
+            </header>
 
-        <header id="header">
-            <router-link :to="{name: 'index'}">
-                Padawan Software
-            </router-link>
-        </header>
-        <nav id="menu"></nav>
-        <div id="content">
-            <router-view @loaded="loaded"></router-view>
-        </div>
-
-        <button id="switch-theme" title="Cambiar tema" @click="switchTheme" :style="{ 'background-image': `url(${theme.img})` }"></button>
-
-        <div v-if="cookieBar" id="cookie-bar">
-            Como ya sabes, esta web almacena datos. <a @click="cookiesInfo" :href="cookiesRoute.href" target="_blank">Más info</a>
-
-        </div>
+            <div id="content">
+                <router-view @loaded="preloader.loaded"></router-view>
+            </div>
+            <switch-theme></switch-theme>
+            <cookie-bar></cookie-bar>
+        </preloader>
     </div>
 </template>
 
 <script>
-    import SettingsManager from '@/service/SettingsManager';
-
-    const themes = [
-        {
-            name: "star-wars",
-            img: require("@/assets/images/star-wars.png")
-        },
-        {
-            name: "aliance",
-            img: require("@/assets/images/aliance.png")
-        },
-        {
-            name: "empire",
-            img: require("@/assets/images/empire.png")
-        }
-    ];
+    import SwitchTheme from '@components/SwitchTheme.vue';
+    import CookieBar from '@components/CookieBar.vue';
+    import Preloader from '@components/Preloader.vue';
 
     export default {
-      name: 'app',
-      // Properties
-      data: function() {
-        return {
-            themeID: 0,
-            hidePreloader: false,
-        };
-      },
-      computed: {
-        theme: function() {
-            return this.$state.theme
+        name: 'app',
+        components: {
+            Preloader,
+            CookieBar,
+            SwitchTheme
         },
-        cookieBar: function() {
-            return ! SettingsManager.has('cookie-bar');
-        },
-        cookiesRoute: function() {
-            return this.$router.resolve({name:'slug', params:{slug: 'cookies'}});
-        }
-      },
-      // Lifecycle
-      beforeMount() {
-        let storedTheme = SettingsManager.get('theme');
-        if (storedTheme) {
-            this.themeID = storedTheme;
-        }
-        this.updateTheme();
-      },
-      watch: {
-        '$route': 'loading',
-        'themeID': function()
-        {
-            this.updateTheme();
-            SettingsManager.set('theme', this.themeID);
-        }
-      },
-      // Methods
-      methods: {
-        switchTheme: function(event) {
-            this.themeID = (this.themeID + 1) % themes.length;
-        },
-        cookiesInfo: function(event) {
-            removeCookieBar(event);
-        },
-        loaded: function(event)
-        {
-            this.hidePreloader = true;
-        },
-        loading: function(event)
-        {
-            this.hidePreloader = false;
-        },
-        updateTheme: function() {
-            this.$state.theme = themes[this.themeID];
-        }
-      }
-    }
-
-    // Cookies bar
-    function removeCookieBar(event)
-    {
-        var cookieBar = document.getElementById('cookie-bar');
-        if (cookieBar) {
-            cookieBar.parentNode.removeChild(cookieBar);
-            document.removeEventListener('scroll', removeCookieBar);
-            SettingsManager.set('cookie-bar', true);
+        computed: {
+            themeName() {
+                return this.$state.theme.name
+            }
         }
     }
-
-    // Add on scroll element
-    window.onload = function() {
-        if (document.getElementById('cookie-bar')) {
-            document.addEventListener('scroll', removeCookieBar);
-        }
-    };
 </script>
 
 <style scoped>

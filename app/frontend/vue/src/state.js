@@ -1,3 +1,6 @@
 export default {
-    theme: null
+    theme: {
+        name: "aliance",
+        img: require("@/assets/images/aliance.png")
+    },
 }

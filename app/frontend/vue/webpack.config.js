@@ -3,11 +3,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueAutoRoutingPlugin = require('vue-auto-routing/lib/webpack-plugin');
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
-const environment = process.env.SERVER_ENV || '';
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
+const environment = process.env.SERVER_ENV || '';
+const mode = (environment == 'production') ? 'production' : 'development';
+
 module.exports = {
-    mode: "development",
+    mode: mode,
     context: path.resolve(__dirname),
     entry: './src/main.js',
     output: {

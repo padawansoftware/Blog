@@ -1,5 +1,7 @@
 'use strict';
 
+const $ = require('jquery');
+
 //  Trumbowyg
 require('trumbowyg/dist/ui/trumbowyg.min.css');
 require('trumbowyg/dist/trumbowyg.min.js');

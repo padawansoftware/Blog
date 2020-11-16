@@ -1,8 +1,8 @@
 'use strict';
 
 require('@css/theme.scss');
-window.$ = require('jquery');
 
+const $ = require('jquery');
 const Swal = require('sweetalert2')
 const ajax = require('@js/ajax')
 

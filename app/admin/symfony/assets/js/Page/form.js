@@ -1,5 +1,7 @@
 'use strict';
 
+const $ = require('jquery');
+
 // Utils
 var utils = require('../utils.js');
 

@@ -3,6 +3,8 @@
 // Style
 require('@css/Post/form.scss');
 
+const $ = require('jquery');
+
 // Utils
 var utils = require('@js/utils.js');
 

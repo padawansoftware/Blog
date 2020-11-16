@@ -1,3 +1,7 @@
+'use strict';
+
+const $ = require('jquery');
+
 $('.image-upload img').click(() => {
     $('.image-upload input').click();
 });

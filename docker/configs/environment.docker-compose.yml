@@ -23,9 +23,8 @@ services:
         container_name: blog-${SERVER_ENV}-proxy
         build: ./services/proxy
         volumes:
-            - ./services/proxy/etc/nginx/sites-available:/etc/nginx/sites-available
-            - ./services/proxy/etc/nginx/sites-available:/etc/nginx/sites-enabled
-            - ./services/proxy/etc/nginx/certificates:/etc/nginx/certificates
+            - certificates:/etc/nginx/certificates
+            - ./shared:/docker-shared
         depends_on:
             - php
             - frontend
@@ -94,6 +93,9 @@ services:
 volumes:
     dbserver:
     media:
+    certificates:
+        external:
+            name: blog-certificates
 
 networks:
     proxy:

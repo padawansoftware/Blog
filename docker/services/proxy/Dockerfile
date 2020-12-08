@@ -12,11 +12,11 @@ RUN apt-get install -y \
 	apt-utils \
 	nginx-extras
 
-ADD etc/nginx/nginx.conf /etc/nginx/
-
 RUN echo "upstream php-upstream { server php:9000; }" > /etc/nginx/conf.d/upstream.conf
+
+ADD filesystem/ /
 
 EXPOSE 80
 EXPOSE 443
 
-CMD nginx
+CMD /root/bin/entrypoint.sh
